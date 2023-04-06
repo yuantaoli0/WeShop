@@ -1,0 +1,8 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "594afe7e12dfd5d5a9610ea9ee0b7a606ceca0b5fcbda8dd5989d32238a89d9a"
+build_start_time: [1680781180, 891307830]
+build_end_time: [1680781184, 558475971]
+inputs:
+  "/Users/tao/Epitech_masterII/Flutter_master/Weshop_HR/weco-admin/macos/Flutter/GeneratedPluginRegistrant.swift": [1680781169, 437156200]
+  "/Users/tao/Epitech_masterII/Flutter_master/Weshop_HR/weco-admin/macos/Runner/AppDelegate.swift": [1677673024, 0]
+  "/Users/tao/Epitech_masterII/Flutter_master/Weshop_HR/weco-admin/macos/Runner/MainFlutterWindow.swift": [1677673024, 0]

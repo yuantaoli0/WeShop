@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
+options: "cb6a055fc28ff20ba2d98e577dbf5f83f383deba42450a7d161ee0b5f1d99f9e"
+build_start_time: [1680710793, 704308032]
+build_end_time: [1680710810, 836584091]
+inputs:
+  "/Users/tao/.pub-cache/hosted/pub.dev/flutter_tts-3.6.3/macos/Classes/FlutterTtsPlugin.swift": [1679494156, 698559284]

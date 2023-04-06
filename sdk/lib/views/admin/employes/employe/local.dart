@@ -1,0 +1,103 @@
+import 'package:sdk/language.dart';
+import 'package:sdk/xlocal.dart';
+
+class XLocal extends XBaseLocal {
+  final _dict = {
+    AppLanguge.en: {
+      'employe_title': 'Employe',
+      'employe_name': 'Name',
+      'employe_sex': 'Sex',
+      'employe_woman': 'Woman',
+      'employe_man': 'Man',
+      'employe_birthday': 'Birthday',
+      'employe_nationality': 'Nationality',
+      'employe_cardNumber': 'Card Number',
+      'employe_address': 'Address',
+      'employe_postCode': 'Post code',
+      'employe_city': 'City',
+      'employe_telephone': 'Telephone',
+      'employe_socialSecurityNumber': 'Social security number',
+      'employe_active': 'Active',
+      'employe_comment': 'Comment',
+      'employe_OK': 'OK',
+    },
+    AppLanguge.fr: {
+      'employe_title': 'Employe',
+      'employe_name': 'Nom',
+      'employe_sex': 'Sex',
+      'employe_woman': 'Femme',
+      'employe_man': 'Homme',
+      'employe_birthday': 'Date naissance',
+      'employe_nationality': 'Nationalité',
+      'employe_cardNumber': 'N° carte',
+      'employe_address': 'Adresse',
+      'employe_postCode': 'Code postale',
+      'employe_city': 'Ville',
+      'employe_telephone': 'Telephone',
+      'employe_socialSecurityNumber': 'N° securité social',
+      'employe_active': 'Active',
+      'employe_comment': 'Commentaire',
+      'employe_OK': 'OK',
+    },
+    AppLanguge.zh: {
+      'employe_title': '员工信息',
+      'employe_name': '姓名',
+      'employe_sex': '性别',
+      'employe_woman': '女士',
+      'employe_man': '先生',
+      'employe_birthday': '生日',
+      'employe_nationality': '国籍',
+      'employe_cardNumber': '卡号',
+      'employe_address': '地址',
+      'employe_postCode': '邮编',
+      'employe_city': '城市',
+      'employe_telephone': '电话',
+      'employe_socialSecurityNumber': '社保号',
+      'employe_active': '可用',
+      'employe_comment': '备注',
+      'employe_OK': 'OK',
+    },
+    AppLanguge.ko: {
+      'employe_title': 'Employe',
+      'employe_name': 'Name',
+      'employe_sex': 'Sex',
+      'employe_woman': 'Woman',
+      'employe_man': 'Man',
+      'employe_birthday': 'Birthday',
+      'employe_nationality': 'Nationality',
+      'employe_cardNumber': 'Card Number',
+      'employe_address': 'Address',
+      'employe_postCode': 'Post code',
+      'employe_city': 'City',
+      'employe_telephone': 'Telephone',
+      'employe_socialSecurityNumber': 'Social security number',
+      'employe_active': 'Active',
+      'employe_comment': 'Comment',
+      'employe_OK': 'OK',
+    },
+    AppLanguge.ja: {
+      'employe_title': 'Employe',
+      'employe_name': 'Name',
+      'employe_sex': 'Sex',
+      'employe_woman': 'Woman',
+      'employe_man': 'Man',
+      'employe_birthday': 'Birthday',
+      'employe_nationality': 'Nationality',
+      'employe_cardNumber': 'Card Number',
+      'employe_address': 'Address',
+      'employe_postCode': 'Post code',
+      'employe_city': 'City',
+      'employe_telephone': 'Telephone',
+      'employe_socialSecurityNumber': 'Social security number',
+      'employe_active': 'Active',
+      'employe_comment': 'Comment',
+      'employe_OK': 'OK',
+    }
+  };
+  @override
+  Map<String, Map<String, String>> get keys => _dict;
+
+  @override
+  // TODO: implement name
+  String get name => 'employe_';
+}

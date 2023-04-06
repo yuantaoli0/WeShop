@@ -1,0 +1,14 @@
+{
+  'version': 0,
+  'use-external-names': 'false',
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/tao/Epitech_masterII/Flutter_master/Weshop_HR/weco-admin/build/macos/Build/Products/Debug/platform_device_id/platform_device_id.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/tao/Epitech_masterII/Flutter_master/Weshop_HR/weco-admin/build/macos/Build/Intermediates.noindex/Pods.build/Debug/platform_device_id.build/unextended-module.modulemap",
+    }]
+  }]
+}
