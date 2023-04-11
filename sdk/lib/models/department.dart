@@ -8,7 +8,7 @@ class Department extends NetBase {
     fromJson(json);
   }
 
-  Future<List<Post>> loadPost() async {
+  Future<List<Post>> loadPosts() async {
     var res = await getHttp('/department/$id/posts');
     if (res['status'] == 200) {
       List<Post> posts = [];
@@ -21,10 +21,17 @@ class Department extends NetBase {
     }
   }
 
+  newPost(data) async {
+    data['department'] = id;
+    var res = await postHttp('/department/$id/newPost', data);
+    if (res['status'] == 200) {
+      return true;
+    }
+  }
+
   @override
   Future<bool> del() async {
     var res = await delHttp('/department/${data['_id']}');
-
     if (res['status'] == 200) {
       return true;
     } else {

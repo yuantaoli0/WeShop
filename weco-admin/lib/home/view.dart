@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:sdk/xView.dart';
 import 'package:weco_admin/home/controller.dart';
 
-import '../job/view.dart';
+import '../departments/department/view.dart';
 import '../system_menu/menu_view.dart';
 import '../theme.dart';
 

@@ -23,10 +23,10 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			olrMEEmnLR62hzw2cZ3fFVB/eOI=
+			KUJk8oXfNMJwheB/WSHThEzJk6Y=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"a25acc1049a72d1eb6873c36719ddf15507f78e2"</string>
+			<string>cdhash H"294264f285df34c27085e07f5921d3844cc993a6"</string>
 		</dict>
 		<key>Frameworks/FlutterMacOS.framework</key>
 		<dict>
@@ -41,55 +41,55 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			JAiAOv5uVNTImje2wt7CgRsFIMM=
+			n9ydd3Zj7S4RzHQFFMMVA6wXcrY=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"2408803afe6e54d4c89a37b6c2dec2811b0520c3"</string>
+			<string>cdhash H"9fdc9d777663ed2e11cc740514c31503ac1772b6"</string>
 		</dict>
 		<key>Frameworks/flutter_tts.framework</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			xdTzQ/5uLQ8XKI1NMYi0WYVXw+4=
+			ySEaACJjZJrs/t+Hd2mNHvs07qw=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"c5d4f343fe6e2d0f17288d4d3188b4598557c3ee"</string>
+			<string>cdhash H"c9211a002263649aecfedf8777698d1efb34eeac"</string>
 		</dict>
 		<key>Frameworks/package_info_plus_macos.framework</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			HPdmuH2MFzEaT9y30AiMtXdKQi4=
+			nCsGmmJkN/O01XY7xAaGOKo5niw=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"1cf766b87d8c17311a4fdcb7d0088cb5774a422e"</string>
+			<string>cdhash H"9c2b069a626437f3b4d5763bc4068638aa399e2c"</string>
 		</dict>
 		<key>Frameworks/path_provider_foundation.framework</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			W8HaHMBsJgB7WAQ7IkXpJ3ZlwbU=
+			3WIPrT8AU87nAZqFqHr7JSgg2ww=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"5bc1da1cc06c26007b58043b2245e9277665c1b5"</string>
+			<string>cdhash H"dd620fad3f0053cee7019a85a87afb252820db0c"</string>
 		</dict>
 		<key>Frameworks/platform_device_id.framework</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			Nl1MGZkE7VG0cWsjq1gWgWPACmc=
+			42DPHIfQsnwAnHuuaG0t4TgHRz0=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"365d4c199904ed51b4716b23ab58168163c00a67"</string>
+			<string>cdhash H"e360cf1c87d0b27c009c7bae686d2de13807473d"</string>
 		</dict>
 		<key>Frameworks/platform_device_id_macos.framework</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			c15U8o8EMaiMHXLAqSR9UfyM138=
+			r8ozhzXsDdGjNHKpXQz73KGxrlo=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"735e54f28f0431a88c1d72c0a9247d51fc8cd77f"</string>
+			<string>cdhash H"afca338735ec0dd1a33472a95d0cfbdca1b1ae5a"</string>
 		</dict>
 		<key>Resources/AppIcon.icns</key>
 		<dict>

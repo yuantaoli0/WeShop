@@ -1,6 +1,6 @@
-version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
-options: "b1a4ca57d2482af3ae59aa6574db38b6c10dcf50112a8507b23737b73d27ff32"
-build_start_time: [1680710793, 647128105]
-build_end_time: [1680710803, 829355955]
+version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
+options: "ee4d75e49a1066d44fa8abd90bf9784df50d02487559faa1866004e75c015069"
+build_start_time: [1680878462, 146773000]
+build_end_time: [1680878474, 911805000]
 inputs:
-  "/Users/tao/.pub-cache/hosted/pub.dev/platform_device_id_macos-1.0.0/macos/Classes/PlatformDeviceIdMacosPlugin.swift": [1679494156, 305837154]
+  "/Users/tao/.pub-cache/hosted/pub.dev/platform_device_id_macos-1.0.0/macos/Classes/PlatformDeviceIdMacosPlugin.swift": [1679494156, 305837057]

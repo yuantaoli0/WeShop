@@ -9,7 +9,7 @@ import 'package:weco_admin/system_menu/controller.dart';
 import 'package:weco_admin/system_menu/view.dart';
 import '../home/controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../job/view.dart';
+import '../departments/department/view.dart';
 
 import '../home/controller.dart';
 
@@ -44,7 +44,7 @@ class SideMenu extends XView<SystemMenuController> {
                 title: "部门管理",
                 svgSrc: "assets/icons/department.svg",
                 onPress: () {
-                  Get.toNamed('/department');
+                  Get.toNamed('/departments');
                 }),
             _buildDrawerListTile(
                 title: "岗位管理",

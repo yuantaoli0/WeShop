@@ -1,0 +1,22 @@
+--- !tapi-tbd
+tbd-version:     4
+targets:         [ x86_64-macos ]
+flags:           [ not_app_extension_safe ]
+install-name:    '@rpath/platform_device_id_macos.framework/Versions/A/platform_device_id_macos'
+swift-abi-version: 7
+exports:
+  - targets:         [ x86_64-macos ]
+    symbols:         [ '_$s24platform_device_id_macos27PlatformDeviceIdMacosPluginC10runCommand_13needAuthorizeS2S_SbtF', 
+                       '_$s24platform_device_id_macos27PlatformDeviceIdMacosPluginC10runCommand_13needAuthorizeS2S_SbtFTq', 
+                       '_$s24platform_device_id_macos27PlatformDeviceIdMacosPluginC6handle_6resultySo17FlutterMethodCallC_yypSgctF', 
+                       '_$s24platform_device_id_macos27PlatformDeviceIdMacosPluginC6handle_6resultySo17FlutterMethodCallC_yypSgctFTq', 
+                       '_$s24platform_device_id_macos27PlatformDeviceIdMacosPluginC8register4withySo07FlutterI9Registrar_p_tFZ', 
+                       '_$s24platform_device_id_macos27PlatformDeviceIdMacosPluginCACycfC', 
+                       '_$s24platform_device_id_macos27PlatformDeviceIdMacosPluginCACycfc', 
+                       '_$s24platform_device_id_macos27PlatformDeviceIdMacosPluginCMa', 
+                       '_$s24platform_device_id_macos27PlatformDeviceIdMacosPluginCMn', 
+                       '_$s24platform_device_id_macos27PlatformDeviceIdMacosPluginCN', 
+                       '_$s24platform_device_id_macos27PlatformDeviceIdMacosPluginCfD', 
+                       _platform_device_id_macosVersionNumber, _platform_device_id_macosVersionString ]
+    objc-classes:    [ PodsDummy_platform_device_id_macos, _TtC24platform_device_id_macos27PlatformDeviceIdMacosPlugin ]
+...

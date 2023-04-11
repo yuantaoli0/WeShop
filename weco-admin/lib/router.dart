@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:sdk/router.dart';
 import 'package:weco_admin/home/view.dart';
 import 'app.dart';
-import 'job/router.dart';
+import 'departments/department/router.dart';
 import 'home/router.dart';
 import 'contract/router.dart';
-import 'department/router.dart';
+import 'departments/router.dart';
 import './schedule/router.dart';
 
 class XRouter {
@@ -20,12 +20,12 @@ class XRouter {
         );
       case '/home':
         return HomeRouter().pageRoute(settings);
-      case '/jobmanagement':
-        return JobManagementRouter().pageRoute(settings);
+      case '/department':
+        return DepartmentRouter().pageRoute(settings);
       case '/contractmanagement':
         return ContractRouter().pageRoute(settings);
-      case '/department':
-        return DapartmentRouter().pageRoute(settings);
+      case '/departments':
+        return DepartmentsRouter().pageRoute(settings);
       case '/schedule':
         return ScheduleRouter().pageRoute(settings);
       default:

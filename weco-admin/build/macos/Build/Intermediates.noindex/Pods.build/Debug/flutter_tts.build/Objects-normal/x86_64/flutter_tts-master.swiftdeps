@@ -1,6 +1,6 @@
-version: "Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)"
-options: "cb6a055fc28ff20ba2d98e577dbf5f83f383deba42450a7d161ee0b5f1d99f9e"
-build_start_time: [1680710793, 704308032]
-build_end_time: [1680710810, 836584091]
+version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
+options: "a181e58d011dea2d8801531be3a1e19db1c2bb71ca8c36da13163266e3134da7"
+build_start_time: [1680878462, 146774000]
+build_end_time: [1680878481, 694103000]
 inputs:
-  "/Users/tao/.pub-cache/hosted/pub.dev/flutter_tts-3.6.3/macos/Classes/FlutterTtsPlugin.swift": [1679494156, 698559284]
+  "/Users/tao/.pub-cache/hosted/pub.dev/flutter_tts-3.6.3/macos/Classes/FlutterTtsPlugin.swift": [1679494156, 698559426]
