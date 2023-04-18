@@ -13,7 +13,7 @@ class Department extends NetBase {
     if (res['status'] == 200) {
       List<Post> posts = [];
       for (var ep in res['data']["posts"]) {
-        posts.add(Post(this, ep));
+        posts.add(Post(ep, this));
       }
       return posts;
     } else {

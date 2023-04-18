@@ -66,8 +66,9 @@ class DepartmentController extends XController {
 
   newPost(String name, Department department) async {
     Post post =
-        Post({'active': true, 'shop': Shop().id, 'posts': name}, department);
-    if (await post.save() == true) {
+        Post({'active': true, 'shop': Shop().id, 'name': name}, department);
+
+    if (await department.newPost(post) == true) {
       loadPosts();
     }
   }
