@@ -46,12 +46,12 @@ class SideMenu extends XView<SystemMenuController> {
                 onPress: () {
                   Get.toNamed('/departments');
                 }),
-            _buildDrawerListTile(
-                title: "岗位管理",
-                svgSrc: "assets/icons/job_management.svg",
-                onPress: () {
-                  Get.toNamed('/jobmanagement');
-                }),
+            // _buildDrawerListTile(
+            //     title: "岗位管理",
+            //     svgSrc: "assets/icons/job_management.svg",
+            //     onPress: () {
+            //       // Get.toNamed('/jobmanagement');
+            //     }),
             _buildDrawerListTile(
                 title: "合同管理",
                 svgSrc: "assets/icons/contract_management.svg",

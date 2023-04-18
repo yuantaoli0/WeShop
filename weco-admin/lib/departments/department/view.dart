@@ -14,35 +14,8 @@ class DepartmentView extends XView<DepartmentController> {
   DepartmentView(args, DepartmentController controller)
       : super(args, controller);
 
-
-// String targetId = '642ed9fab0d2c9d3320cbc7c'; // 这是你要查找的部门ID
-
-// try {
-//   Department targetDepartment = departments.firstWhere((department) => department.id == targetId);
-//   String targetName = targetDepartment.name;
-//   print('Department name: $targetName'); // 输出部门名称
-// } catch (e) {
-//   print('Department not found'); // 如果没有找到具有给定ID的部门，输出错误信息
-// }
-
   @override
   Widget build(BuildContext context) {
-
-    // if (args.containsKey('department') && args['department'] is Map) {
-    //   Map<String, dynamic> department = args['department'];
-    //   String? departmentName = department['name'];
-
-    //   if (departmentName != null) {
-    //     print('Department name: $departmentName');
-    //   } else {
-    //     print('Name not found in department');
-    //   }
-    // } else {
-    //   print('Department not found in args');
-    // }
-    // print('++++++++++++++++++++++++++++++$args');
-    // print('-------------------------------$args.name');
-
     return Scaffold(
       body: SafeArea(
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -68,14 +41,14 @@ class DepartmentView extends XView<DepartmentController> {
                     child: obx(
                       () => GridView.builder(
                         shrinkWrap: true,
-                        itemCount: ctl.rxEmployes.length,
+                        itemCount: ctl.rxPost.length,
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 4,
                                 crossAxisSpacing: defaultPadding,
                                 mainAxisSpacing: defaultPadding),
                         itemBuilder: (context, index) =>
-                            _buildFileInfoCard(ep: ctl.rxEmployes[index]),
+                            _buildFileInfoCard(ep: ctl.rxPost[index]),
                       ),
                     ),
                   ),
@@ -283,8 +256,6 @@ class DepartmentView extends XView<DepartmentController> {
   }
 
   Column _bulidAddJob() {
-    String targetId = '642ebf18b0d2c9d3320cbc1e'; // 这是你要查找的部门 ID
-
     TextEditingController nameController = TextEditingController();
 
     return Column(
@@ -307,7 +278,7 @@ class DepartmentView extends XView<DepartmentController> {
                   ),
                   onFieldSubmitted: (String value) {
                     controller.setDepartmentValue(
-                        'name', value, ctl.department);
+                        'name', value, args['department']);
                   },
                 ),
               ),
@@ -316,13 +287,16 @@ class DepartmentView extends XView<DepartmentController> {
                     Get.defaultDialog(
                         barrierDismissible: false,
                         title: '添加岗位信息',
-                        titleStyle: TextStyle(color: Colors.red),
+                        titleStyle: TextStyle(color: Colors.black),
                         content: Column(
                           children: [
-                            Text('这是数据'),
-                            Text('这是数据'),
-                            Text('这是数据'),
-                            Text('这是数据'),
+                            TextField(
+                              controller: nameController,
+                              decoration: InputDecoration(
+                                labelText: '输入岗位',
+                                border: OutlineInputBorder(),
+                              ),
+                            ),
                           ],
                         ),
                         cancel: ElevatedButton(
@@ -333,7 +307,9 @@ class DepartmentView extends XView<DepartmentController> {
                                 style: TextStyle(color: Colors.black))),
                         confirm: ElevatedButton(
                           onPressed: () {
-                            ctl.newEmploye(['job']);
+                            // ctl.newEmploye(nameController.text);
+                            ctl.newPost(
+                                nameController.text, args['department']);
                             Get.back();
                           },
                           child:
@@ -479,7 +455,7 @@ class DepartmentView extends XView<DepartmentController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  ep['name'].toString(),
+                  ep['posts'].toString(),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -495,7 +471,7 @@ class DepartmentView extends XView<DepartmentController> {
                     Padding(
                       padding: const EdgeInsets.only(left: defaultPadding),
                       child: Text(
-                        ep['department'].toString(),
+                        ep['name'].toString(),
                       ),
                     ),
                   ],
@@ -563,7 +539,7 @@ class DepartmentView extends XView<DepartmentController> {
                         ),
                       ],
                     ),
-                    Text(ep.count_pepo.toString()),
+                    // Text(ep.count_pepo.toString()),
                   ],
                 ),
               ],

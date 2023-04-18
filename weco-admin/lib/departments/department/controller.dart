@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sdk/models/department.dart';
 import 'package:sdk/models/employe.dart';
+import 'package:sdk/models/post.dart';
 import 'package:sdk/models/shop.dart';
 import 'package:sdk/views/admin/employes/employe/router.dart';
 import 'package:sdk/xcontroller.dart';
@@ -14,16 +15,22 @@ class DepartmentController extends XController {
   RxBool rxIsloading = false.obs;
   FocusNode nameNode = FocusNode();
   RxList<Employe> rxEmployes = RxList([]);
+  RxList<Post> rxPost = RxList([]);
   Department department;
   DepartmentController(this.department) {
-    loadEmployes();
+    // loadPosts();
+    // loadEmployes();
   }
 
-  get nameController => null;
+  TextEditingController nameController = TextEditingController();
+
   @override
   void onInit() {
-    Shop().loadEmployes().then((list) {
-      rxEmployes.addAll(list);
+    // Shop().loadDartpements().then((list) {
+    //   rxEmployes.addAll(list as Iterable<Employe>);
+    // });
+    department.loadPosts().then((list) {
+      rxPost.addAll(list);
     });
     super.onInit();
   }
@@ -39,18 +46,33 @@ class DepartmentController extends XController {
     });
   }
 
-  newEmploye(List value) async {
-    Employe ep = Employe({
-      'active': true,
-      'shop': Shop().id,
-      'value': ['job']
+  loadPosts() {
+    rxIsloading.value = true;
+    rxPost.clear();
+    department.loadPosts().then((posts) {
+      rxPost.addAll(posts);
+      rxIsloading.value = false;
+    }).catchError((e) {
+      rxIsloading.value = false;
     });
+  }
+
+  newEmploye(String name) async {
+    Employe ep = Employe({'active': true, 'shop': Shop().id, 'name': name});
     if (await ep.save() == true) {
       loadEmployes();
     }
   }
 
-    setDepartmentValue(String key, dynamic value, Department department) {
+  newPost(String name, Department department) async {
+    Post post =
+        Post({'active': true, 'shop': Shop().id, 'posts': name}, department);
+    if (await post.save() == true) {
+      loadPosts();
+    }
+  }
+
+  setDepartmentValue(String key, dynamic value, Department department) {
     department[key] = value;
     department.save();
     rxEmployes.refresh();

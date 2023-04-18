@@ -12,7 +12,7 @@ class LoginRouter extends XBaseRouter {
         settings: settings,
         transition: Transition.fade,
         page: () {
-          var args = settings.arguments as Map;
+          var args = settings?.arguments as Map;
           var ctl = Get.put(LoginController(args == null ? '' : args['pushToken']));
           if (isPhone) {
             return PhoneView(settings.arguments, ctl);

@@ -32,7 +32,7 @@ class ScheduleView extends XView<ScheduleController> {
                   const SizedBox(
                     height: defaultPadding,
                   ),
-                  _bulidAddJob(context),
+                  _bulidScheduleDrawer(context),
                 ],
               )),
         ],
@@ -40,7 +40,7 @@ class ScheduleView extends XView<ScheduleController> {
     );
   }
 
-  Column _bulidAddJob(BuildContext context) {
+  Column _bulidScheduleDrawer(BuildContext context) {
     return Column(
       children: [
         Padding(
@@ -49,7 +49,7 @@ class ScheduleView extends XView<ScheduleController> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildChangeTime(),
+              _buildChangeTime(context),
               // ),
             ],
           ),
@@ -69,55 +69,196 @@ class ScheduleView extends XView<ScheduleController> {
     );
   }
 
-  ElevatedButton _buildChangeTime() {
+  ElevatedButton _buildChangeTime(BuildContext context) {
+    // final ScheduleController _dropdownController =
+    //     Get.put(ScheduleController());
+
     return ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(buttonColor),
-                padding: MaterialStateProperty.all<EdgeInsets>(
-                  EdgeInsets.symmetric(
-                      horizontal: defaultPadding / 2,
-                      vertical: defaultPadding),
+      style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all<Color>(buttonColor),
+        padding: MaterialStateProperty.all<EdgeInsets>(
+          EdgeInsets.symmetric(
+              horizontal: defaultPadding / 2, vertical: defaultPadding),
+        ),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: const [
+          Text('Month'), // 放置文本组件
+          SizedBox(width: 8), // 为了在文本和图标之间添加间距，可以根据需要调整
+          Icon(Icons.expand_more), // 放置图标组件
+        ],
+      ),
+      onPressed: () {
+        RDrawer.open(
+          Container(
+            color: Colors.white,
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: defaultPadding),
+                  child: Card(child: _buildDropdownExample()),
                 ),
-                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 100),
+                  child: _buildScheduleDays(),
                 ),
+                Card(
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('日历详情'),
+                            IconButton(onPressed: () {}, icon: Icon(Icons.add))
+                          ],
+                        ),
+                        Text('dsa'),
+                        Text('dsa'),
+                        Text('dsa'),
+                        Text('dsa'),
+                      ]),
+                ),
+              ],
+            ),
+          ),
+          dir: DrawerDirEnum.right,
+          width: 450,
+          maskClose: true,
+        );
+      },
+    );
+  }
+
+  Widget _buildDropdownExample() {
+    final ScheduleController controller = Get.find<ScheduleController>();
+
+    return GetBuilder<ScheduleController>(
+      init: controller,
+      builder: (controller) {
+        List<int> _yearList = List<int>.generate(DateTime.now().year - 1899,
+            (i) => i + 1900); // Generate list of years
+
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            DropdownButton<int>(
+              value: controller.selectedYear.value,
+              icon: Icon(Icons.expand_more),
+              iconSize: 40,
+              elevation: 16,
+              style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold),
+              underline: Container(
+                height: 2,
+                color: Colors.transparent,
               ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: const [
-                  Text('Month'), // 放置文本组件
-                  SizedBox(width: 8), // 为了在文本和图标之间添加间距，可以根据需要调整
-                  Icon(Icons.expand_more), // 放置图标组件
+              onChanged: (int? newValue) {
+                controller.updateSelectedYear(newValue!);
+              },
+
+              selectedItemBuilder: (BuildContext context) {
+                return _yearList.map<Widget>((int year) {
+                  return Center(child: Text(year.toString()));
+                }).toList();
+              },
+              menuMaxHeight: 250, // 设置下拉菜单的最大高度
+              items: _yearList.map<DropdownMenuItem<int>>((int year) {
+                return DropdownMenuItem<int>(
+                  value: year,
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(minHeight: 50), // 设置项的高度
+                    child: Center(child: Text(year.toString())),
+                  ),
+                );
+              }).toList(),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  GetBuilder<ScheduleController> _buildScheduleDays() {
+    return GetBuilder<ScheduleController>(
+      init: ScheduleController(),
+      builder: (_) {
+        var daysInMonth = _.getDaysInMonth(); // 使用 _ 代替 controller
+        return Card(
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.arrow_back),
+                    onPressed: () => _.previousMonth(),
+                  ),
+                  Obx(() => Text(
+                        '${_.selectedYear.value}-${_.selectedMonth.toString().padLeft(2, '0')}',
+                        style: TextStyle(fontSize: defaultPadding),
+                      )),
+                  IconButton(
+                    icon: Icon(Icons.arrow_forward),
+                    onPressed: () => _.nextMonth(),
+                  ),
                 ],
               ),
-              onPressed: () {
-                RDrawer.open(
-                  Container(
-                    color: Colors.white,
-                    child: Column(
-                      children: [
-                        Container(
-                            width: 400, // 设置 Card 的宽度
-                            height: 60, // 设置 Card 的高度
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.circular(10), // 设置 Card 的圆角
-                              border: Border.all(
-                                  color: Colors.black, width: 2), // 设置边框颜色和宽度
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text('一'),
+                      Text('二'),
+                      Text('三'),
+                      Text('四'),
+                      Text('五'),
+                      Text('六'),
+                      Text('七')
+                    ]),
+              ),
+              GridView.count(
+                crossAxisCount: 7,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                children: daysInMonth.map((day) {
+                  bool isPast = day.isBefore(_.today);
+                  return MouseRegion(
+                    onEnter: (event) =>
+                        _.hoverColor = Colors.grey.withOpacity(0.2),
+                    onExit: (event) => _.hoverColor = Colors.transparent,
+                    child: InkWell(
+                      onTap: () => _.selectDate(day),
+                      hoverColor: isPast ? Colors.transparent : _.hoverColor,
+                      child: Container(
+                        color: _.defaultColor,
+                        child: Center(
+                          child: Text(
+                            day.day.toString(),
+                            style: TextStyle(
+                              color: isPast ? Colors.grey : Colors.black,
                             ),
-                            child: Card(child: DropdownExample())),
-                      ],
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                  dir: DrawerDirEnum.right,
-                  width: 450,
-                  maskClose: true,
-                );
-              },
-            );
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   _buildSearchFile(BuildContext context) {
@@ -211,50 +352,3 @@ class ScheduleView extends XView<ScheduleController> {
         ));
   }
 }
-
-class DropdownExample extends StatefulWidget {
-  @override
-  _DropdownExampleState createState() => _DropdownExampleState();
-}
-
-class _DropdownExampleState extends State<DropdownExample> {
-  String _selectedOption = 'Month';
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        DropdownButton<String>(
-          value: _selectedOption,
-          icon: Icon(Icons.expand_more),
-          iconSize: 40,
-          elevation: 16,
-          style: TextStyle(color: Colors.black, fontSize: 40, fontWeight: FontWeight.bold),
-          underline: Container(
-            height: 2,
-            color: Colors.transparent,
-          ),
-          onChanged: (String? newValue) {
-            setState(() {
-              _selectedOption = newValue!;
-            });
-          },
-          selectedItemBuilder: (BuildContext context) {
-            return ['Year', 'Month', 'Day'].map<Widget>((String value) {
-              return Center(child: Text(value));
-            }).toList();
-          },
-          items: <String>['Year', 'Month', 'Day']
-              .map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Center(child: Text(value)),
-            );
-          }).toList(),
-        ),
-      ],
-    );
-  }
-}
-

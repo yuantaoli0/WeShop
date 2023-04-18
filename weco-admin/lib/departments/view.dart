@@ -30,7 +30,7 @@ class DepartmentView extends XView<DepartmentsController> {
                   const SizedBox(
                     height: defaultPadding,
                   ),
-                  _bulidAddJob(),
+                  _bulidAddDepartment(),
                   const SizedBox(
                     height: defaultPadding * 2,
                   ),
@@ -151,7 +151,7 @@ class DepartmentView extends XView<DepartmentsController> {
         ));
   }
 
-  Column _bulidAddJob() {
+  Column _bulidAddDepartment() {
     TextEditingController nameController = TextEditingController();
     return Column(
       children: [
@@ -163,21 +163,21 @@ class DepartmentView extends XView<DepartmentsController> {
             children: [
               // ignore: prefer_const_constructors
               Text(
-                "公司所有部门岗位",
+                "公司所有部门",
                 style: const TextStyle(color: Color(0xFF5F5E61), fontSize: 20),
               ),
               ElevatedButton.icon(
                   onPressed: () {
                     Get.defaultDialog(
                         barrierDismissible: false,
-                        title: '添加岗位信息',
+                        title: '添加部门信息',
                         titleStyle: TextStyle(color: Colors.black),
                         content: Column(
                           children: [
                             TextField(
                               controller: nameController,
                               decoration: InputDecoration(
-                                labelText: '输入岗位',
+                                labelText: '输入部门',
                                 border: OutlineInputBorder(),
                               ),
                             ),
@@ -273,7 +273,7 @@ _buildFileInfoCard({departement, controller}) {
                 itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
                   const PopupMenuItem<String>(
                     value: 'Open',
-                    child: Text('打开岗位'),
+                    child: Text('打开部门'),
                   ),
                   const PopupMenuItem<String>(
                     value: 'Delete',
