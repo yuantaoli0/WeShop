@@ -17,6 +17,7 @@ class HomeView extends XView<HomeController> {
     // double defaultPadding = 20.0;
 
     return Scaffold(
+      backgroundColor: secondaryColor,
       body: SafeArea(child: Row(children: [
          Expanded(child: SideMenu()),
          Expanded(flex:  5,child: Center(child: Text('Home')))

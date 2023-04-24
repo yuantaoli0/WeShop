@@ -18,6 +18,7 @@ class ContractView extends XView<ContractController> {
     // double defaultPadding = 20.0;
 
     return Scaffold(
+      backgroundColor: secondaryColor,
       body: SafeArea(
           child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

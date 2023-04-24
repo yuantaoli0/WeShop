@@ -17,7 +17,6 @@ class ScheduleController extends GetxController {
     selectedYear = DateTime.now().year.obs;
   }
 
-
   void updateSelectedYear(int newYear) {
     selectedYear.value = newYear;
     update();

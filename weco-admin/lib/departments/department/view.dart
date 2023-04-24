@@ -17,6 +17,7 @@ class DepartmentView extends XView<DepartmentController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: secondaryColor,
       body: SafeArea(
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
           // ignore: prefer_const_constructors
@@ -31,13 +32,13 @@ class DepartmentView extends XView<DepartmentController> {
                     height: defaultPadding,
                   ),
                   //添加员工信息
-                  _bulidAddJob(),
+                  _bulidAddPost(context),
                   _buildCountField(),
 
                   Container(
                     height: 760,
                     width: 1350,
-                    color: bgColor,
+                    color: secondaryColor,
                     child: obx(
                       () => GridView.builder(
                         shrinkWrap: true,
@@ -48,7 +49,7 @@ class DepartmentView extends XView<DepartmentController> {
                                 crossAxisSpacing: defaultPadding,
                                 mainAxisSpacing: defaultPadding),
                         itemBuilder: (context, index) =>
-                            _buildFileInfoCard(ep: ctl.rxPost[index]),
+                            _buildFileInfoCard(post: ctl.rxPost[index]),
                       ),
                     ),
                   ),
@@ -255,7 +256,7 @@ class DepartmentView extends XView<DepartmentController> {
     );
   }
 
-  Column _bulidAddJob() {
+  Column _bulidAddPost(BuildContext context) {
     TextEditingController nameController = TextEditingController();
 
     return Column(
@@ -264,71 +265,11 @@ class DepartmentView extends XView<DepartmentController> {
           padding: const EdgeInsets.only(
               left: defaultPadding, right: defaultPadding),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               // ignore: prefer_const_constructors
-              Expanded(
-                child: TextFormField(
-                  controller: controller.nameController,
-                  focusNode: controller.nameNode,
-                  textInputAction: TextInputAction.done,
-                  // validator: Validator().notEmpty,
-                  decoration: InputDecoration(
-                    hintText: args['department']['name'].toString().tr,
-                  ),
-                  onFieldSubmitted: (String value) {
-                    controller.setDepartmentValue(
-                        'name', value, args['department']);
-                  },
-                ),
-              ),
-              ElevatedButton.icon(
-                  onPressed: () {
-                    Get.defaultDialog(
-                        barrierDismissible: false,
-                        title: '添加岗位信息',
-                        titleStyle: TextStyle(color: Colors.black),
-                        content: Column(
-                          children: [
-                            TextField(
-                              controller: nameController,
-                              decoration: InputDecoration(
-                                labelText: '输入岗位',
-                                border: OutlineInputBorder(),
-                              ),
-                            ),
-                          ],
-                        ),
-                        cancel: ElevatedButton(
-                            onPressed: () {
-                              Get.back();
-                            },
-                            child: Text("取消",
-                                style: TextStyle(color: Colors.black))),
-                        confirm: ElevatedButton(
-                          onPressed: () {
-                            // ctl.newEmploye(nameController.text);
-                            ctl.newPost(
-                                nameController.text, args['department']);
-                            Get.back();
-                          },
-                          child:
-                              Text("确认", style: TextStyle(color: Colors.black)),
-                          style: ButtonStyle(
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.green)),
-                        ));
-                  },
-                  style: TextButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: defaultPadding * 1.5,
-                          vertical: defaultPadding)),
-                  icon: const Icon(Icons.add),
-                  label: const Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: defaultPadding / 5),
-                    child: Text("Add New"),
-                  )),
+              _buildDeparmentName(context),
+              _buildAddNewPostButton(nameController),
               // ),
             ],
           ),
@@ -345,6 +286,95 @@ class DepartmentView extends XView<DepartmentController> {
           ),
         ),
       ],
+    );
+  }
+
+  ElevatedButton _buildAddNewPostButton(TextEditingController nameController) {
+    return ElevatedButton.icon(
+        onPressed: () {
+          Get.defaultDialog(
+              barrierDismissible: false,
+              title: '添加岗位信息',
+              titleStyle: TextStyle(color: Colors.black),
+              content: Column(
+                children: [
+                  TextField(
+                    controller: nameController,
+                    decoration: InputDecoration(
+                      labelText: '输入岗位',
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ],
+              ),
+              cancel: ElevatedButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text("取消", style: TextStyle(color: Colors.black))),
+              confirm: ElevatedButton(
+                onPressed: () {
+                  // ctl.newEmploye(nameController.text);
+                  ctl.newPost(nameController.text, args['department']);
+                  Get.back();
+                },
+                child: Text("确认", style: TextStyle(color: Colors.black)),
+                style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.green)),
+              ));
+        },
+        style: TextButton.styleFrom(
+            padding: const EdgeInsets.symmetric(
+                horizontal: defaultPadding * 1.5, vertical: defaultPadding)),
+        icon: const Icon(Icons.add),
+        label: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: defaultPadding / 5),
+          child: Text("Add New"),
+        ));
+  }
+
+  Expanded _buildDeparmentName(BuildContext context) {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+            horizontal: defaultPadding *
+                26), // Change the padding value to adjust the underline length
+        child: TextFormField(
+          controller: controller.nameController,
+          focusNode: controller.nameNode,
+          textInputAction: TextInputAction.done,
+          // validator: Validator().notEmpty,
+          decoration: InputDecoration(
+            hintText: args['department']['name'].toString().tr,
+            hintStyle: TextStyle(
+              fontSize: defaultPadding * 1.1,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+            suffixIcon: IconButton(
+              icon: Icon(
+                Icons.edit_note,
+                size: defaultPadding * 1.6,
+                color: Colors.black,
+              ),
+              onPressed: () {
+                if (controller.nameController.text.trim().isNotEmpty) {
+                  controller.setDepartmentValue('name',
+                      controller.nameController.text, args['department']);
+                  FocusScope.of(context).unfocus();
+                }
+              },
+            ),
+            border: InputBorder.none,
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                color: Theme.of(context).primaryColor,
+                width: 2.0,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 
@@ -416,12 +446,15 @@ class DepartmentView extends XView<DepartmentController> {
     );
   }
 
-  _buildFileInfoCard({ep}) {
+  _buildFileInfoCard({post}) {
+    List<String> parts = post['createdAt'].toString().split('T');
+    String dateBeforeT = parts[0];
+
     return Container(
       padding: const EdgeInsets.all(defaultPadding),
       // ignore: prefer_const_constructors
       decoration: BoxDecoration(
-          color: Color(0xFFB9B9B9),
+          color: Colors.white,
           borderRadius:
               const BorderRadius.all(Radius.circular(defaultPadding))),
       child: Column(
@@ -431,67 +464,11 @@ class DepartmentView extends XView<DepartmentController> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  padding: const EdgeInsets.all(defaultPadding * 0.3),
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  child: SvgPicture.asset(
-                    (ep['svgSrc'] ?? 'assets/icons/job_analysts.svg')
-                        .toString(),
-                    color: Colors.white,
-                  ),
-                ),
-                // ignore: prefer_const_constructors
-                Icon(
-                  Icons.more_vert,
-                  color: Colors.white,
-                )
+                _buildPostCoin(post),
+                _buildPopupButton(post),
               ],
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  ep['posts'].toString(),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                      fontSize: defaultPadding * 1.2,
-                      fontWeight: FontWeight.w900),
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.group,
-                      color: Colors.white70,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: defaultPadding),
-                      child: Text(
-                        ep['name'].toString(),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      Icons.watch_later,
-                      color: Colors.white70,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: defaultPadding),
-                      child: Text(
-                        ep['createdAt'].toString(),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+            _buildInfoPost(post, dateBeforeT),
             Container(
               height: 2.0,
               margin:
@@ -539,12 +516,137 @@ class DepartmentView extends XView<DepartmentController> {
                         ),
                       ],
                     ),
-                    // Text(ep.count_pepo.toString()),
+                    // Text(post.count_pepo.toString()),
                   ],
                 ),
               ],
             ),
           ]),
+    );
+  }
+
+  Container _buildPostCoin(post) {
+    return Container(
+      padding: const EdgeInsets.all(defaultPadding * 0.3),
+      height: 40,
+      width: 40,
+      decoration: const BoxDecoration(
+          color: Color(0xFF7EBCE2),
+          borderRadius: BorderRadius.all(Radius.circular(10))),
+      child: SvgPicture.asset(
+        (post['svgSrc'] ?? 'assets/icons/job_management.svg').toString(),
+        color: Colors.white,
+      ),
+    );
+  }
+
+  Column _buildInfoPost(post, String dateBeforeT) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          '所在岗位',
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+              fontSize: defaultPadding * 1.2, fontWeight: FontWeight.w900),
+        ),
+        Row(
+          children: [
+            Icon(
+              Icons.group,
+              color: secondaryColor,
+            ),
+            Expanded(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: defaultPadding),
+                child: obx(
+                  () => TextField(
+                    controller: controller.postnameController,
+                    focusNode: controller.postnameNode,
+                    enabled: controller.isTextFieldEditable.value,
+                    textInputAction: TextInputAction.done,
+                    cursorColor: Colors.blue,
+                    cursorWidth: 3.0,
+                    // validator: Validator().notEmpty,
+                    decoration: InputDecoration(
+                      hintText: post['name'].toString().tr,
+                      hintStyle: TextStyle(
+                        color: Colors.black,
+                      ),
+                      border: InputBorder.none,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          Icons.assignment_turned_in,
+                          color: Colors.green,
+                        ),
+                        onPressed: () {
+                          if (controller.postnameController.text
+                              .trim()
+                              .isNotEmpty) {
+                            controller.setPostValue('name',
+                                controller.postnameController.text, post);
+                          }
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+        Row(
+          children: [
+            Icon(
+              Icons.watch_later,
+              color: secondaryColor,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: defaultPadding),
+              child: Text(
+                dateBeforeT,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  PopupMenuButton<String> _buildPopupButton(post) {
+    return PopupMenuButton<String>(
+      icon: Icon(Icons.more_vert),
+      color: Colors.white, // Set the background color of the popup menu
+      elevation: 16,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(
+            15.0), // Set the corner radius of the popup menu
+      ),
+      itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+        const PopupMenuItem<String>(
+          value: 'Modification',
+          child: Text('修改岗位名称'),
+        ),
+        const PopupMenuItem<String>(
+          value: 'Delete',
+          child: Text('删除岗位'),
+        ),
+      ],
+      onSelected: (String value) {
+        if (value == 'Modification') {
+          controller.isTextFieldEditable.toggle();
+          Future.delayed(Duration(milliseconds: 50), () {
+            controller.postnameNode.requestFocus();
+            controller.postnameController.selection =
+                TextSelection.fromPosition(TextPosition(
+                    offset: controller.postnameController.text.length));
+          });
+        }
+        if (value == 'Delete') {
+          controller.delPosts(post);
+        }
+      },
     );
   }
 }

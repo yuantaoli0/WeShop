@@ -8,14 +8,16 @@ import 'package:sdk/xcontroller.dart';
 
 class SystemMenuController extends GetxService {
   final ScrollController controller = ScrollController();
-  
+  RxInt selectedIndex = 0.obs;
+
   @override
   void onInit() {
     super.onInit();
   }
 
   doLogout() async {
-    var r = await XController.getConfirm(title: 'app_logout_confirm'.tr, content: 'app_logout_confimContent'.tr);
+    var r = await XController.getConfirm(
+        title: 'app_logout_confirm'.tr, content: 'app_logout_confimContent'.tr);
 
     if (r == true && await User.currentUser?.doLogout() == true) {
       //await Scale.close();

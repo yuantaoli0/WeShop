@@ -7,11 +7,7 @@ import 'package:get/get.dart';
 import 'package:sdk/xView.dart';
 import 'package:weco_admin/system_menu/controller.dart';
 import 'package:weco_admin/system_menu/view.dart';
-import '../home/controller.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../departments/department/view.dart';
-
-import '../home/controller.dart';
 
 class SideMenu extends XView<SystemMenuController> {
   SideMenu() : super(null, null) {
@@ -33,19 +29,25 @@ class SideMenu extends XView<SystemMenuController> {
                 svgSrc: "assets/icons/home.svg",
                 onPress: () {
                   Get.toNamed('/home');
-                }),
+                  ctl.selectedIndex.value = 0;
+                },
+                index: 0),
             _buildDrawerListTile(
                 title: "时间计划表",
                 svgSrc: "assets/icons/schedule.svg",
                 onPress: () {
                   Get.toNamed('/schedule');
-                }),
+                  ctl.selectedIndex.value = 1;
+                },
+                index: 1),
             _buildDrawerListTile(
                 title: "部门管理",
                 svgSrc: "assets/icons/department.svg",
                 onPress: () {
-                  Get.toNamed('/departments');
-                }),
+                  ctl.selectedIndex.value = 2;
+                  Get.offNamed('/departments');
+                },
+                index: 2),
             // _buildDrawerListTile(
             //     title: "岗位管理",
             //     svgSrc: "assets/icons/job_management.svg",
@@ -57,7 +59,9 @@ class SideMenu extends XView<SystemMenuController> {
                 svgSrc: "assets/icons/contract_management.svg",
                 onPress: () {
                   Get.toNamed('/contractmanagement');
-                }),
+                  ctl.selectedIndex.value = 3;
+                },
+                index: 3),
             // _buildDrawerListTile(
             //     title: "消息",
             //     svgSrc: "assets/icons/message.svg",
@@ -69,7 +73,10 @@ class SideMenu extends XView<SystemMenuController> {
             _buildDrawerListTile(
                 title: "设置",
                 svgSrc: "assets/icons/setting.svg",
-                onPress: () {}),
+                onPress: () {
+                  ctl.selectedIndex.value = 4;
+                },
+                index: 4),
           ],
         ),
       ),
@@ -77,22 +84,30 @@ class SideMenu extends XView<SystemMenuController> {
   }
 
   Padding _buildDrawerListTile(
-      {required String title, required String svgSrc, required onPress}) {
+      {required String title,
+      required String svgSrc,
+      required onPress,
+      required int index}) {
     return Padding(
       padding: const EdgeInsets.only(top: 25.0),
       child: ListTile(
         onTap: onPress,
         horizontalTitleGap: 0.0,
-        leading: SvgPicture.asset(
-          svgSrc,
-          color: Colors.white,
-          height: 20,
-        ),
         // ignore: prefer_const_constructors
-        title: Text(
-          title,
-          style: TextStyle(color: Colors.white),
-        ),
+        title: Obx(() => Text(
+              title,
+              style: TextStyle(
+                  color: ctl.selectedIndex.value == index
+                      ? Colors.orange
+                      : Colors.white),
+            )),
+        leading: Obx(() => SvgPicture.asset(
+              svgSrc,
+              color: ctl.selectedIndex.value == index
+                  ? Colors.orange
+                  : Colors.white,
+              height: 20,
+            )),
       ),
     );
   }

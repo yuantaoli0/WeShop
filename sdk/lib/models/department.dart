@@ -21,6 +21,21 @@ class Department extends NetBase {
     }
   }
 
+
+  Future<List<Post>> loadPosts_2(String? departmentId) async {
+    var res = await getHttp('/department/$departmentId/posts');
+    if (res['status'] == 200) {
+      List<Post> posts = [];
+      for (var ep in res['data']["posts"]) {
+        posts.add(Post(ep, this));
+      }
+      return posts;
+    } else {
+      return [];
+    }
+  }
+
+
   newPost(data) async {
     data['department'] = id;
     var res = await postHttp('/department/$id/newPost', data);

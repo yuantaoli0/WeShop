@@ -19,6 +19,7 @@ class ScheduleView extends XView<ScheduleController> {
     // double defaultPadding = 20.0;
 
     return Scaffold(
+      backgroundColor: secondaryColor,
       body: SafeArea(
           child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -116,13 +117,22 @@ class ScheduleView extends XView<ScheduleController> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text('日历详情'),
-                            IconButton(onPressed: () {}, icon: Icon(Icons.add))
+                            IconButton(
+                                onPressed: () {
+                                  showSelectionCard();
+                                },
+                                icon: Icon(Icons.add))
                           ],
                         ),
-                        Text('dsa'),
-                        Text('dsa'),
-                        Text('dsa'),
-                        Text('dsa'),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.check_box,
+                              color: Colors.green,
+                            ),
+                            Text('技术维护'),
+                          ],
+                        ),
                       ]),
                 ),
               ],
@@ -131,6 +141,29 @@ class ScheduleView extends XView<ScheduleController> {
           dir: DrawerDirEnum.right,
           width: 450,
           maskClose: true,
+        );
+      },
+    );
+  }
+
+  void showSelectionCard() {
+    showModalBottomSheet(
+      backgroundColor: secondaryColor,
+      context: Get.context!,
+      builder: (BuildContext context) {
+        return Container(
+          child: ListView.builder(
+            itemCount: 5,
+            itemBuilder: (BuildContext context, int index) {
+              return ListTile(
+                title: Text('Item $index'),
+                onTap: () {
+                  print('Selected Item $index');
+                  // Get.back();
+                },
+              );
+            },
+          ),
         );
       },
     );

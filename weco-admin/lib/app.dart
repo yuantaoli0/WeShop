@@ -8,6 +8,7 @@ import 'package:sdk/sdkController.dart';
 import 'package:sdk/xView.dart';
 import 'package:weco_admin/system_menu/menu_view.dart';
 import 'package:weco_admin/system_menu/view.dart';
+import 'package:weco_admin/theme.dart';
 //import 'package:fullscreen/fullscreen.dart';
 
 class AppController extends SDKController {
@@ -66,6 +67,7 @@ class AppView extends XView<AppController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: secondaryColor,
       body: Center(
         child: SizedBox(
           width: Get.context!.width / 2,

@@ -17,6 +17,7 @@ class DepartmentView extends XView<DepartmentsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: secondaryColor,
       body: SafeArea(
           child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,7 +38,7 @@ class DepartmentView extends XView<DepartmentsController> {
                   Container(
                     height: 760,
                     width: 1350,
-                    color: bgColor,
+                    color: secondaryColor,
                     child: obx(
                       () => GridView.builder(
                         shrinkWrap: true,
@@ -185,6 +186,7 @@ class DepartmentView extends XView<DepartmentsController> {
                         ),
                         cancel: ElevatedButton(
                             onPressed: () {
+                              nameController.clear();
                               Get.back();
                             },
                             child: Text("取消",
@@ -193,6 +195,7 @@ class DepartmentView extends XView<DepartmentsController> {
                           onPressed: () {
                             ctl.newDepartments(nameController.text);
                             Get.back();
+                            nameController.clear();
                           },
                           child:
                               Text("确认", style: TextStyle(color: Colors.black)),
@@ -239,7 +242,7 @@ _buildFileInfoCard({departement, controller}) {
     padding: const EdgeInsets.all(defaultPadding),
     // ignore: prefer_const_constructors
     decoration: BoxDecoration(
-        color: Color(0xFFB9B9B9),
+        color: Colors.white,
         borderRadius: const BorderRadius.all(Radius.circular(defaultPadding))),
     child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -253,18 +256,17 @@ _buildFileInfoCard({departement, controller}) {
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
-                    color: Color(0xFF4F96F7),
+                    color: primaryColor,
                     borderRadius: BorderRadius.all(Radius.circular(10))),
                 child: SvgPicture.asset(
                   (departement['svgSrc'] ?? 'assets/icons/job_analysts.svg')
                       .toString(),
-                  color: Colors.white,
                 ),
               ),
               PopupMenuButton<String>(
                 icon: Icon(Icons.more_vert),
                 color:
-                    Colors.white, // Set the background color of the popup menu
+                    secondaryColor, // Set the background color of the popup menu
                 elevation: 16,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
@@ -315,7 +317,7 @@ _buildFileInfoCard({departement, controller}) {
                 children: [
                   Icon(
                     Icons.group,
-                    color: Colors.white70,
+                    color: secondaryColor,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: defaultPadding),
@@ -329,7 +331,7 @@ _buildFileInfoCard({departement, controller}) {
                 children: [
                   Icon(
                     Icons.watch_later,
-                    color: Colors.white70,
+                    color: secondaryColor,
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: defaultPadding),

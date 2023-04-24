@@ -13,16 +13,20 @@ import '../../theme.dart';
 
 class DepartmentController extends XController {
   RxBool rxIsloading = false.obs;
+  RxBool isTextFieldEditable = false.obs;
   FocusNode nameNode = FocusNode();
+  FocusNode postnameNode = FocusNode();
   RxList<Employe> rxEmployes = RxList([]);
   RxList<Post> rxPost = RxList([]);
   Department department;
-  DepartmentController(this.department) {
-    // loadPosts();
-    // loadEmployes();
-  }
+  DepartmentController(this.department);
 
   TextEditingController nameController = TextEditingController();
+  TextEditingController postnameController = TextEditingController();
+
+  void toggle() {
+    isTextFieldEditable.value = !isTextFieldEditable.value;
+  }
 
   @override
   void onInit() {
@@ -46,7 +50,7 @@ class DepartmentController extends XController {
     });
   }
 
-  loadPosts() {
+  loadPosts(Department department) {
     rxIsloading.value = true;
     rxPost.clear();
     department.loadPosts().then((posts) {
@@ -55,6 +59,15 @@ class DepartmentController extends XController {
     }).catchError((e) {
       rxIsloading.value = false;
     });
+  }
+
+  delPosts(Post post) async {
+    if (await XController.getConfirm(
+            title: 'Confirmation', content: 'Vous etes sur?') ==
+        true) {
+      await post.del();
+      rxPost.remove(post);
+    }
   }
 
   newEmploye(String name) async {
@@ -67,15 +80,20 @@ class DepartmentController extends XController {
   newPost(String name, Department department) async {
     Post post =
         Post({'active': true, 'shop': Shop().id, 'name': name}, department);
-
     if (await department.newPost(post) == true) {
-      loadPosts();
+      loadPosts(department);
     }
-  }
+  }  
 
   setDepartmentValue(String key, dynamic value, Department department) {
     department[key] = value;
     department.save();
     rxEmployes.refresh();
+  }
+
+  setPostValue(String key, dynamic value, Post post) {
+    post[key] = value;
+    post.save();
+    rxPost.refresh();
   }
 }

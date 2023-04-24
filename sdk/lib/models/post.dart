@@ -18,7 +18,7 @@ class Post extends NetBase {
       return true;
     } else {
       return false;
-    }
+    } 
   }
 
   @override
