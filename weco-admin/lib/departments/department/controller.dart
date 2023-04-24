@@ -24,9 +24,12 @@ class DepartmentController extends XController {
   TextEditingController nameController = TextEditingController();
   TextEditingController postnameController = TextEditingController();
 
-  void toggle() {
-    isTextFieldEditable.value = !isTextFieldEditable.value;
-  }
+  final editablePostId = RxString('');
+
+  // void toggle() {
+  //   isTextFieldEditable.value = !isTextFieldEditable.value;
+  // }
+  
 
   @override
   void onInit() {
@@ -83,7 +86,7 @@ class DepartmentController extends XController {
     if (await department.newPost(post) == true) {
       loadPosts(department);
     }
-  }  
+  }
 
   setDepartmentValue(String key, dynamic value, Department department) {
     department[key] = value;

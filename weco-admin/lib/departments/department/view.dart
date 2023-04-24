@@ -91,7 +91,7 @@ class DepartmentView extends XView<DepartmentController> {
                       hintText: "Search",
                       // ignore: prefer_const_constructors
                       hintStyle: TextStyle(
-                        color: Colors.white,
+                        color: Colors.white,  
                       ),
                       // fillColor: Color.fromARGB(153, 184, 184, 219),
                       filled: true,
@@ -617,7 +617,7 @@ class DepartmentView extends XView<DepartmentController> {
   PopupMenuButton<String> _buildPopupButton(post) {
     return PopupMenuButton<String>(
       icon: Icon(Icons.more_vert),
-      color: Colors.white, // Set the background color of the popup menu
+      color: secondaryColor, // Set the background color of the popup menu
       elevation: 16,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
@@ -635,6 +635,7 @@ class DepartmentView extends XView<DepartmentController> {
       ],
       onSelected: (String value) {
         if (value == 'Modification') {
+          controller.editablePostId.value = post['_id'];
           controller.isTextFieldEditable.toggle();
           Future.delayed(Duration(milliseconds: 50), () {
             controller.postnameNode.requestFocus();
