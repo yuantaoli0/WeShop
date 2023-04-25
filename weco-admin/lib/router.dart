@@ -7,6 +7,7 @@ import 'departments/department/router.dart';
 import 'home/router.dart';
 import 'contract/router.dart';
 import 'departments/router.dart';
+import './employes/router.dart';
 import './schedule/router.dart';
 
 class XRouter {
@@ -26,6 +27,8 @@ class XRouter {
         return ContractRouter().pageRoute(settings);
       case '/departments':
         return DepartmentsRouter().pageRoute(settings);
+      case '/employes':
+        return EmployesRouter().pageRoute(settings);
       case '/schedule':
         return ScheduleRouter().pageRoute(settings);
       default:

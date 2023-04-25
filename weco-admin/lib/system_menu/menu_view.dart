@@ -61,29 +61,39 @@ class SideMenu extends XView<SystemMenuController> {
                   });
                 },
                 index: 2),
-          
             _buildDrawerListTile(
-                title: "合同管理",
-                svgSrc: "assets/icons/contract_management.svg",
+                title: "部门管理",
+                svgSrc: "assets/icons/department.svg",
                 onPress: () {
                   Future.microtask(() {
                     ctl.selectedIndex.value = 3;
                     SystemMenuController.globalSelectedIndex =
                         ctl.selectedIndex.value;
-                    Get.offNamed('/contractmanagement');
+                    Get.offNamed('/employes');
                   });
                 },
                 index: 3),
-     
+            _buildDrawerListTile(
+                title: "合同管理",
+                svgSrc: "assets/icons/contract_management.svg",
+                onPress: () {
+                  Future.microtask(() {
+                    ctl.selectedIndex.value = 4;
+                    SystemMenuController.globalSelectedIndex =
+                        ctl.selectedIndex.value;
+                    Get.offNamed('/contractmanagement');
+                  });
+                },
+                index: 4),
             _buildDrawerListTile(
                 title: "设置",
                 svgSrc: "assets/icons/setting.svg",
                 onPress: () {
                   Future.microtask(() {
-                    ctl.selectedIndex.value = 4;
+                    ctl.selectedIndex.value = 5;
                   });
                 },
-                index: 4),
+                index: 5),
           ],
         ),
       ),

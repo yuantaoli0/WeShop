@@ -1,6 +1,0 @@
-version: "Apple Swift version 5.8 (swiftlang-5.8.0.124.2 clang-1403.0.22.11.100)"
-options: "ee4d75e49a1066d44fa8abd90bf9784df50d02487559faa1866004e75c015069"
-build_start_time: [1682415806, 443131000]
-build_end_time: [1682415816, 937034000]
-inputs:
-  "/Users/tao/.pub-cache/hosted/pub.dev/platform_device_id_macos-1.0.0/macos/Classes/PlatformDeviceIdMacosPlugin.swift": [1679494156, 305837057]

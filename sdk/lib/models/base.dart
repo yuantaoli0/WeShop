@@ -259,6 +259,36 @@ abstract class NetBase extends Base {
     }
   }
 
+    postimage(file, String url, String avatarImage) async {
+    Dio dio = new Dio(BaseOptions(
+      baseUrl: Base.server,
+      //baseUrl: "http://files.weshop.fr:2016",
+      /*validateStatus: (status) {
+        return status == 200 || status == 408 || status == 401;
+      }*/
+    ));
+    try {
+      FormData? formData;
+      if (file is String) {
+        formData =
+            FormData.fromMap({avatarImage: MultipartFile.fromFileSync(file)});
+      } else if (file is File) {
+        formData = FormData.fromMap(
+            {avatarImage: MultipartFile.fromFileSync(file.path)});
+      }
+      var response =
+          await dio.post(url, data: formData, options: _prepareOptions());
+
+      return response.data;
+    } catch (ex, stack) {
+      var r = exceptionFilter(ex);
+      if (r != null && r['msg'] != null) {
+        XController.showMessage(r['msg']);
+      }
+      return r;
+    }
+  }
+
   exceptionFilter(err, {bool ingoreSessionTimeout = false}) {
     if (err is DioError && err.response != null) {
       switch (err.response?.statusCode) {
