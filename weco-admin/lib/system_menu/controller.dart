@@ -10,6 +10,8 @@ class SystemMenuController extends GetxService {
   final ScrollController controller = ScrollController();
   RxInt selectedIndex = 0.obs;
 
+  static var globalSelectedIndex = 0;
+
   @override
   void onInit() {
     super.onInit();

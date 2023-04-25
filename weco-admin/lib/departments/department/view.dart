@@ -91,7 +91,7 @@ class DepartmentView extends XView<DepartmentController> {
                       hintText: "Search",
                       // ignore: prefer_const_constructors
                       hintStyle: TextStyle(
-                        color: Colors.white,  
+                        color: Colors.white,
                       ),
                       // fillColor: Color.fromARGB(153, 184, 184, 219),
                       filled: true,
@@ -541,6 +541,22 @@ class DepartmentView extends XView<DepartmentController> {
   }
 
   Column _buildInfoPost(post, String dateBeforeT) {
+    String key = post['_id'].toString();
+    if (!controller.isTextFieldEditableMap.containsKey(key)) {
+      controller.isTextFieldEditableMap[key] = false.obs;
+    }
+    if (!controller.postnameNodes.containsKey(key)) {
+      controller.postnameNodes[key] = FocusNode();
+    }
+    if (!controller.postnameControllers.containsKey(key)) {
+      controller.postnameControllers[key] =
+          TextEditingController(text: post['name'].toString());
+    }
+
+    FocusNode focusNode = controller.postnameNodes[key]!;
+    TextEditingController textEditingController =
+        controller.postnameControllers[key]!;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -562,13 +578,13 @@ class DepartmentView extends XView<DepartmentController> {
                 padding: EdgeInsets.symmetric(horizontal: defaultPadding),
                 child: obx(
                   () => TextField(
-                    controller: controller.postnameController,
-                    focusNode: controller.postnameNode,
-                    enabled: controller.isTextFieldEditable.value,
+                    controller: textEditingController,
+                    focusNode: focusNode,
+                    enabled:
+                        controller.isTextFieldEditableMap[key]?.value ?? false,
                     textInputAction: TextInputAction.done,
                     cursorColor: Colors.blue,
                     cursorWidth: 3.0,
-                    // validator: Validator().notEmpty,
                     decoration: InputDecoration(
                       hintText: post['name'].toString().tr,
                       hintStyle: TextStyle(
@@ -581,11 +597,9 @@ class DepartmentView extends XView<DepartmentController> {
                           color: Colors.green,
                         ),
                         onPressed: () {
-                          if (controller.postnameController.text
-                              .trim()
-                              .isNotEmpty) {
-                            controller.setPostValue('name',
-                                controller.postnameController.text, post);
+                          if (textEditingController.text.trim().isNotEmpty) {
+                            controller.setPostValue(
+                                'name', textEditingController.text, post);
                           }
                         },
                       ),
@@ -635,13 +649,15 @@ class DepartmentView extends XView<DepartmentController> {
       ],
       onSelected: (String value) {
         if (value == 'Modification') {
-          controller.editablePostId.value = post['_id'];
-          controller.isTextFieldEditable.toggle();
+          controller.isTextFieldEditableMap[post['_id']]?.toggle();
+          String key = post['_id'].toString();
+          FocusNode focusNode = controller.postnameNodes[key]!;
+          TextEditingController textEditingController =
+              controller.postnameControllers[key]!;
           Future.delayed(Duration(milliseconds: 50), () {
-            controller.postnameNode.requestFocus();
-            controller.postnameController.selection =
-                TextSelection.fromPosition(TextPosition(
-                    offset: controller.postnameController.text.length));
+            focusNode.requestFocus();
+            textEditingController.selection = TextSelection.fromPosition(
+                TextPosition(offset: textEditingController.text.length));
           });
         }
         if (value == 'Delete') {

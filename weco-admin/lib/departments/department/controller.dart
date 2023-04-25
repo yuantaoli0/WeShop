@@ -26,10 +26,13 @@ class DepartmentController extends XController {
 
   final editablePostId = RxString('');
 
+  final Map<String, FocusNode> postnameNodes = {};
+  final Map<String, TextEditingController> postnameControllers = {};
+  final Map<String, RxBool> isTextFieldEditableMap = {};
+
   // void toggle() {
   //   isTextFieldEditable.value = !isTextFieldEditable.value;
   // }
-  
 
   @override
   void onInit() {

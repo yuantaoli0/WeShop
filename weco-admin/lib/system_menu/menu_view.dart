@@ -12,6 +12,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 class SideMenu extends XView<SystemMenuController> {
   SideMenu() : super(null, null) {
     var ctl = Get.put(SystemMenuController());
+    ctl.selectedIndex.value = SystemMenuController.globalSelectedIndex;
     this.ctl = ctl;
   }
 
@@ -28,53 +29,59 @@ class SideMenu extends XView<SystemMenuController> {
                 title: "首页",
                 svgSrc: "assets/icons/home.svg",
                 onPress: () {
-                  Get.toNamed('/home');
-                  ctl.selectedIndex.value = 0;
+                  Future.microtask(() {
+                    ctl.selectedIndex.value = 0;
+                    SystemMenuController.globalSelectedIndex =
+                        ctl.selectedIndex.value;
+                    Get.offNamed('/home');
+                  });
                 },
                 index: 0),
             _buildDrawerListTile(
                 title: "时间计划表",
                 svgSrc: "assets/icons/schedule.svg",
                 onPress: () {
-                  Get.toNamed('/schedule');
-                  ctl.selectedIndex.value = 1;
+                  Future.microtask(() {
+                    ctl.selectedIndex.value = 1;
+                    SystemMenuController.globalSelectedIndex =
+                        ctl.selectedIndex.value;
+                    Get.offNamed('/schedule');
+                  });
                 },
                 index: 1),
             _buildDrawerListTile(
                 title: "部门管理",
                 svgSrc: "assets/icons/department.svg",
                 onPress: () {
-                  ctl.selectedIndex.value = 2;
-                  Get.offNamed('/departments');
+                  Future.microtask(() {
+                    ctl.selectedIndex.value = 2;
+                    SystemMenuController.globalSelectedIndex =
+                        ctl.selectedIndex.value;
+                    Get.offNamed('/departments');
+                  });
                 },
                 index: 2),
-            // _buildDrawerListTile(
-            //     title: "岗位管理",
-            //     svgSrc: "assets/icons/job_management.svg",
-            //     onPress: () {
-            //       // Get.toNamed('/jobmanagement');
-            //     }),
+          
             _buildDrawerListTile(
                 title: "合同管理",
                 svgSrc: "assets/icons/contract_management.svg",
                 onPress: () {
-                  Get.toNamed('/contractmanagement');
-                  ctl.selectedIndex.value = 3;
+                  Future.microtask(() {
+                    ctl.selectedIndex.value = 3;
+                    SystemMenuController.globalSelectedIndex =
+                        ctl.selectedIndex.value;
+                    Get.offNamed('/contractmanagement');
+                  });
                 },
                 index: 3),
-            // _buildDrawerListTile(
-            //     title: "消息",
-            //     svgSrc: "assets/icons/message.svg",
-            //     onPress: () {}),
-            // _buildDrawerListTile(
-            //     title: "团队成员",
-            //     svgSrc: "assets/icons/member_teams.svg",
-            //     onPress: () {}),
+     
             _buildDrawerListTile(
                 title: "设置",
                 svgSrc: "assets/icons/setting.svg",
                 onPress: () {
-                  ctl.selectedIndex.value = 4;
+                  Future.microtask(() {
+                    ctl.selectedIndex.value = 4;
+                  });
                 },
                 index: 4),
           ],
