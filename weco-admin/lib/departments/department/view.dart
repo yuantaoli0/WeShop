@@ -591,18 +591,88 @@ class DepartmentView extends XView<DepartmentController> {
                         color: Colors.black,
                       ),
                       border: InputBorder.none,
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          Icons.assignment_turned_in,
-                          color: Colors.green,
-                        ),
-                        onPressed: () {
-                          if (textEditingController.text.trim().isNotEmpty) {
-                            controller.setPostValue(
-                                'name', textEditingController.text, post);
-                          }
-                        },
-                      ),
+                      suffixIcon: controller
+                                  .isTextFieldEditableMap[key]?.value ??
+                              false
+                          ? IconButton(
+                              icon: Icon(
+                                Icons.assignment_turned_in,
+                                color: Colors.green,
+                              ),
+                              onPressed: () {
+                                Get.dialog(
+                                  AlertDialog(
+                                    title: null,
+                                    content: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          '确认是否修改',
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        SizedBox(height: 20),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: <Widget>[
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                Get.back();
+                                              },
+                                              child: Text("取消",
+                                                  style: TextStyle(
+                                                      color: Colors.black)),
+                                              style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStateProperty.all(
+                                                        Colors.blue),
+                                                foregroundColor:
+                                                    MaterialStateProperty.all(
+                                                        Colors.black),
+                                              ),
+                                            ),
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                if (textEditingController.text
+                                                    .trim()
+                                                    .isNotEmpty) {
+                                                  controller.setPostValue(
+                                                      'name',
+                                                      textEditingController
+                                                          .text,
+                                                      post);
+                                                  controller
+                                                      .isTextFieldEditableMap[
+                                                          key]
+                                                      ?.value = false;
+                                                  Get.back();
+                                                }
+                                              },
+                                              child: Text("确认",
+                                                  style: TextStyle(
+                                                      color: Colors.black)),
+                                              style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStateProperty.all(
+                                                        Colors.green),
+                                                foregroundColor:
+                                                    MaterialStateProperty.all(
+                                                        Colors.black),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            )
+                          : null,
                     ),
                   ),
                 ),

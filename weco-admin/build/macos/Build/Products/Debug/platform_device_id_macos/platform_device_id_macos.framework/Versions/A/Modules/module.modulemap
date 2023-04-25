@@ -1,0 +1,11 @@
+framework module platform_device_id_macos {
+  umbrella header "platform_device_id_macos-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module platform_device_id_macos.Swift {
+  header "platform_device_id_macos-Swift.h"
+  requires objc
+}
