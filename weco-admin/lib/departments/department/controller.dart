@@ -16,7 +16,7 @@ class DepartmentController extends XController {
   RxBool isTextFieldEditable = false.obs;
   FocusNode nameNode = FocusNode();
   FocusNode postnameNode = FocusNode();
-  RxList<Employe> rxEmployes = RxList([]);
+  // RxList<Employe> rxEmployes = RxList([]);
   RxList<Post> rxPost = RxList([]);
   Department department;
   DepartmentController(this.department);
@@ -30,10 +30,6 @@ class DepartmentController extends XController {
   final Map<String, TextEditingController> postnameControllers = {};
   final Map<String, RxBool> isTextFieldEditableMap = {};
 
-  // void toggle() {
-  //   isTextFieldEditable.value = !isTextFieldEditable.value;
-  // }
-
   @override
   void onInit() {
     // Shop().loadDartpements().then((list) {
@@ -45,16 +41,16 @@ class DepartmentController extends XController {
     super.onInit();
   }
 
-  loadEmployes() {
-    rxIsloading.value = true;
-    rxEmployes.clear();
-    Shop().loadEmployes().then((employes) {
-      rxEmployes.addAll(employes);
-      rxIsloading.value = false;
-    }).catchError((e) {
-      rxIsloading.value = false;
-    });
-  }
+  // loadEmployes() {
+  //   rxIsloading.value = true;
+  //   rxEmployes.clear();
+  //   Shop().loadEmployes().then((employes) {
+  //     rxEmployes.addAll(employes);
+  //     rxIsloading.value = false;
+  //   }).catchError((e) {
+  //     rxIsloading.value = false;
+  //   });
+  // }
 
   loadPosts(Department department) {
     rxIsloading.value = true;
@@ -76,12 +72,12 @@ class DepartmentController extends XController {
     }
   }
 
-  newEmploye(String name) async {
-    Employe ep = Employe({'active': true, 'shop': Shop().id, 'name': name});
-    if (await ep.save() == true) {
-      loadEmployes();
-    }
-  }
+  // newEmploye(String name) async {
+  //   Employe ep = Employe({'active': true, 'shop': Shop().id, 'name': name});
+  //   if (await ep.save() == true) {
+  //     loadEmployes();
+  //   }
+  // }
 
   newPost(String name, Department department) async {
     Post post =
@@ -94,7 +90,7 @@ class DepartmentController extends XController {
   setDepartmentValue(String key, dynamic value, Department department) {
     department[key] = value;
     department.save();
-    rxEmployes.refresh();
+    // rxEmployes.refresh();
   }
 
   setPostValue(String key, dynamic value, Post post) {

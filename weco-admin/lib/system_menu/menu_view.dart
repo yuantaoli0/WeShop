@@ -62,7 +62,7 @@ class SideMenu extends XView<SystemMenuController> {
                 },
                 index: 2),
             _buildDrawerListTile(
-                title: "部门管理",
+                title: "员工管理",
                 svgSrc: "assets/icons/department.svg",
                 onPress: () {
                   Future.microtask(() {
