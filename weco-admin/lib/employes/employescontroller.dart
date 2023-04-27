@@ -5,24 +5,23 @@ import 'package:sdk/models/employe.dart';
 import 'package:sdk/models/shop.dart';
 import 'package:sdk/xcontroller.dart';
 
-// class RecentFile {
-//   final String? icon, name, job, contact, salaire;
-
-//   RecentFile({this.icon, this.name, this.job, this.contact, this.salaire});
-
-//   get timestamp => null;
-// }
-
 class EmployesController extends XController {
   RxList<Employe> rxEmployes = RxList([]);
   RxBool rxIsloading = false.obs;
 
-  // Department department;
+  List<String> labelText = [
+    '姓名',
+    '性别',
+    '生日',
+    '入职时间',
+  ];
+  List<TextEditingController> textControllers =
+      List.generate(4, (index) => TextEditingController());
 
   @override
   void onInit() {
-    Shop().loadDartpements().then((list) {
-      rxEmployes.addAll(list as Iterable<Employe>);
+    Shop().loadEmployes().then((list) {
+      rxEmployes.addAll(list);
     });
     super.onInit();
   }
@@ -38,33 +37,27 @@ class EmployesController extends XController {
     });
   }
 
-  newEmploye(String name) async {
-    Employe ep = Employe({'active': true, 'shop': Shop().id, 'name': name});
+  newEmploye(List<String> inputData) async {
+    Employe ep = Employe({
+      'active': true,
+      'shop': Shop().id,
+      'name': inputData[0],
+      'sex': inputData[1],
+      'birthday': inputData[2],
+      'startAt': inputData[3]
+    });
     if (await ep.save() == true) {
       loadEmployes();
     }
   }
 
-  // RxList<RecentFile> rxDemoRecentFiles = RxList([
-  //   RecentFile(
-  //       icon: "assets/icons/setting.svg",
-  //       name: "Yuantao Li",
-  //       job: "产品经理",
-  //       contact: "yuantaoli827@gamil.com",
-  //       salaire: '3000'),
-  // ]);
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
-
-  // newContract() {
-  //   rxDemoRecentFiles.add(RecentFile(
-  //     icon: "assets/icons/setting.svg",
-  //     name: "Yuantao Li",
-  //     job: "产品经理",
-  //     contact: "yuantaoli827@gamil.com",
-  //     salaire: '3000',
-  //   ));
-  // }
+  delEmploye(Employe ep) async {
+    if (await XController.getConfirm(
+            title: 'Confirmation', content: 'Vous etes sur?') ==
+        true) {
+      await ep.del();
+      rxEmployes.remove(ep);
+      close(false);
+    }
+  }
 }

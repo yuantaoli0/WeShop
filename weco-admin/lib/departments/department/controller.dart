@@ -69,6 +69,7 @@ class DepartmentController extends XController {
         true) {
       await post.del();
       rxPost.remove(post);
+      close(false);
     }
   }
 

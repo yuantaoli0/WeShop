@@ -49,6 +49,7 @@ class DepartmentsController extends XController {
         true) {
       await department.del();
       rxDepartments.remove(department);
+      close(false);
     }
   }
 

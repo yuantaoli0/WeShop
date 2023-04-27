@@ -15,7 +15,6 @@ class EmployeView extends XView<EmployesController> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: secondaryColor,
       body: SafeArea(
@@ -32,7 +31,7 @@ class EmployeView extends XView<EmployesController> {
                     const SizedBox(
                       height: defaultPadding,
                     ),
-                    _bulidAddJob(),
+                    _bulidAddJob(controller),
                     const SizedBox(
                       height: defaultPadding * 2,
                     ),
@@ -79,16 +78,19 @@ class EmployeView extends XView<EmployesController> {
                       label: Text("姓名"),
                     ),
                     DataColumn(
-                      label: Text("邮箱/联系电话"),
+                      label: Text("生日"),
                     ),
                     DataColumn(
-                      label: Text("工资"),
+                      label: Text("入职时间"),
                     ),
                     DataColumn(
                       label: Text("上传合同"),
                     ),
                     DataColumn(
                       label: Text("查看"),
+                    ),
+                    DataColumn(
+                      label: Text(" "),
                     ),
                   ],
                   rows: List.generate(ctl.rxEmployes.length,
@@ -100,6 +102,65 @@ class EmployeView extends XView<EmployesController> {
         ),
       ],
     );
+  }
+
+  DataRow ContractInfoRow(ep) {
+    List<String> parts = ep['startAt'].toString().split('T');
+    String dateBeforeT = parts[0];
+
+    List<String> birthdayparts = ep['birthday'].toString().split('T');
+    String BirthdayBefore = birthdayparts[0];
+    return DataRow(cells: [
+      DataCell(
+        Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: defaultPadding),
+              child: SvgPicture.asset(ep['icon'].toString()),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(ep['name'].toString()),
+                Text(
+                  ep['sex'].toString(),
+                  style: TextStyle(
+                      color: Color(0xFF707276), fontSize: defaultPadding / 1.8),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+      DataCell(Text(BirthdayBefore)),
+      DataCell(Text(dateBeforeT)),
+      DataCell(IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.upload_file,
+            size: defaultPadding * 1.5,
+          ))),
+      DataCell(
+        IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.plagiarism,
+            size: defaultPadding * 1.5,
+          ),
+        ),
+      ),
+      DataCell(
+        IconButton(
+          onPressed: () {
+            ctl.delEmploye(ep);
+          },
+          icon: Icon(
+            Icons.delete_forever,
+            size: defaultPadding * 1.5,
+          ),
+        ),
+      ),
+    ]);
   }
 
   Container _buildSearchFile(BuildContext context) {
@@ -193,47 +254,7 @@ class EmployeView extends XView<EmployesController> {
         ));
   }
 
-  DataRow ContractInfoRow(ep) {
-    return DataRow(cells: [
-      DataCell(
-        Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(right: defaultPadding),
-              child: SvgPicture.asset(ep['icon'].toString()),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(ep['name'].toString()),
-                Text(
-                  ep['name'].toString(),
-                  style: TextStyle(
-                      color: Color(0xFF707276), fontSize: defaultPadding / 1.8),
-                ),
-              ],
-            )
-          ],
-        ),
-      ),
-      DataCell(Text(ep['name'].toString())),
-      DataCell(Text(ep['name'].toString())),
-      DataCell(IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.upload_file,
-            size: defaultPadding * 1.5,
-          ))),
-      DataCell(IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.plagiarism,
-            size: defaultPadding * 1.5,
-          ))),
-    ]);
-  }
-
-  Column _bulidAddJob() {
+  Column _bulidAddJob(EmployesController controller) {
     return Column(
       children: [
         Padding(
@@ -249,7 +270,8 @@ class EmployeView extends XView<EmployesController> {
               ),
               ElevatedButton.icon(
                   onPressed: () {
-                    ctl.newEmploye("dsa");
+                    _showCustomDialog(controller);
+                    // ctl.newEmploye("dsa");
                   },
                   style: TextButton.styleFrom(
                       padding: const EdgeInsets.symmetric(
@@ -279,4 +301,56 @@ class EmployeView extends XView<EmployesController> {
       ],
     );
   }
+}
+
+void _showCustomDialog(EmployesController controller) {
+  controller.textControllers.forEach((controller) => controller.clear());
+  Get.dialog(
+    Dialog(
+      child: Container(
+        width: 300,
+        padding: EdgeInsets.all(16),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ...List.generate(
+              4,
+              (index) => Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: TextFormField(
+                  controller: controller.textControllers[index],
+                  decoration: InputDecoration(
+                    labelText: controller.labelText[index],
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: Text('取消'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    List<String> inputData = controller.textControllers
+                        .map((controller) => controller.text)
+                        .toList();
+
+                    controller.newEmploye(inputData);
+                    Get.back();
+                  },
+                  child: Text('确认'),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
 }
