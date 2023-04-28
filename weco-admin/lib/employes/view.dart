@@ -127,8 +127,7 @@ class EmployeView extends XView<EmployesController> {
                   );
                   if (result != null) {
                     File file = File(result.files.single.path!);
-                    print('Picked image: ${file.path}');
-                    ctl.updateImage(ep['id'].toString(), file);
+                    ctl.updateImage(ep['_id'].toString(), file, ep);
                   } else {
                     print('User canceled the picker');
                   }
@@ -137,9 +136,9 @@ class EmployeView extends XView<EmployesController> {
                   child: Obx(
                     () {
                       return Image(
-                        image: ctl.selectedImages[ep['id'].toString()] != null
+                        image: ctl.selectedImages[ep['_id'].toString()] != null
                             ? FileImage(
-                                    ctl.selectedImages[ep['id'].toString()]!)
+                                    ctl.selectedImages[ep['_id'].toString()]!)
                                 as ImageProvider<Object>
                             : AssetImage('assets/images/useravatar.png')
                                 as ImageProvider<Object>,

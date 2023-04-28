@@ -117,6 +117,8 @@ abstract class NetBase extends Base {
     }
   }
 
+
+
   _prepareOptions() {
     var options;
 
@@ -258,6 +260,7 @@ abstract class NetBase extends Base {
       return r;
     }
   }
+
 
     postimage(file, String url, String avatarImage) async {
     Dio dio = new Dio(BaseOptions(

@@ -22,8 +22,11 @@ class EmployesController extends XController {
 
   RxMap<String, File?> selectedImages = RxMap<String, File?>();
 
-   void updateImage(String employeId, File newImage) {
+  void updateImage(String employeId, File newImage, Employe ep) async {
     selectedImages[employeId] = newImage;
+    var res = await ep.postFile(
+        newImage, '/shop/avatars/uploadImage', 'avatarImage');
+    print(res);
     update();
   }
 
@@ -58,12 +61,11 @@ class EmployesController extends XController {
     // if (await ep.save() == true) {
     //   loadEmployes();
     // }
-      if (await ep.save() == true) {
+    if (await ep.save() == true) {
       loadEmployes();
       // 设置新添加的员工的默认头像
-      selectedImages[ep['id'].toString()] = null;
+      selectedImages[ep['_id'].toString()] = null;
     }
-
   }
 
   delEmploye(Employe ep) async {

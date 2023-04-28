@@ -250,43 +250,52 @@ class ScheduleView extends XView<ScheduleController> {
                 child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: const [
+                      Text('日'),
                       Text('一'),
                       Text('二'),
                       Text('三'),
                       Text('四'),
                       Text('五'),
-                      Text('六'),
-                      Text('七')
+                      Text('六')
                     ]),
               ),
               GridView.count(
                 crossAxisCount: 7,
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
-                children: daysInMonth.map((day) {
-                  bool isPast = day.isBefore(_.today);
-                  return MouseRegion(
-                    onEnter: (event) =>
-                        _.hoverColor = Colors.grey.withOpacity(0.2),
-                    onExit: (event) => _.hoverColor = Colors.transparent,
-                    child: InkWell(
-                      onTap: () => _.selectDate(day),
-                      hoverColor: isPast ? Colors.transparent : _.hoverColor,
-                      child: Container(
-                        color: _.defaultColor,
-                        child: Center(
-                          child: Text(
-                            day.day.toString(),
-                            style: TextStyle(
-                              color: isPast ? Colors.grey : Colors.black,
+                children: [
+                  ...List.generate(
+                    DateTime(_.selectedYear.value, _.selectedMonth.value, 1)
+                            .weekday %
+                        7,
+                    (index) => SizedBox(),
+                  ),
+                  ...daysInMonth.map((day) {
+                    bool isPast = day.isBefore(_.today);
+                    return MouseRegion(
+                      onEnter: (event) =>
+                          _.hoverColor = Colors.grey.withOpacity(0.2),
+                      onExit: (event) => _.hoverColor = Colors.transparent,
+                      child: InkWell(
+                        onTap: () => _.selectDate(day),
+                        hoverColor: isPast ? Colors.transparent : _.hoverColor,
+                        child: Container(
+                          color: _.defaultColor,
+                          child: Center(
+                            child: Text(
+                              day.day.toString(),
+                              style: TextStyle(
+                                color: isPast ? Colors.grey : Colors.black,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                }).toList(),
+                    );
+                  }).toList(),
+                ],
               ),
+
             ],
           ),
         );
