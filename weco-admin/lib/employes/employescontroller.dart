@@ -4,6 +4,8 @@ import 'package:sdk/models/department.dart';
 import 'package:sdk/models/employe.dart';
 import 'package:sdk/models/shop.dart';
 import 'package:sdk/xcontroller.dart';
+import 'dart:io';
+import 'package:file_picker/file_picker.dart';
 
 class EmployesController extends XController {
   RxList<Employe> rxEmployes = RxList([]);
@@ -17,6 +19,13 @@ class EmployesController extends XController {
   ];
   List<TextEditingController> textControllers =
       List.generate(4, (index) => TextEditingController());
+
+  RxMap<String, File?> selectedImages = RxMap<String, File?>();
+
+   void updateImage(String employeId, File newImage) {
+    selectedImages[employeId] = newImage;
+    update();
+  }
 
   @override
   void onInit() {
@@ -46,9 +55,15 @@ class EmployesController extends XController {
       'birthday': inputData[2],
       'startAt': inputData[3]
     });
-    if (await ep.save() == true) {
+    // if (await ep.save() == true) {
+    //   loadEmployes();
+    // }
+      if (await ep.save() == true) {
       loadEmployes();
+      // 设置新添加的员工的默认头像
+      selectedImages[ep['id'].toString()] = null;
     }
+
   }
 
   delEmploye(Employe ep) async {
@@ -59,5 +74,10 @@ class EmployesController extends XController {
       rxEmployes.remove(ep);
       close(false);
     }
+  }
+
+  uploadImage(Employe ep, File image) async {
+    var res =
+        await ep.postFile(image, '/shop/avatars/uploadImage', 'avatarImage');
   }
 }

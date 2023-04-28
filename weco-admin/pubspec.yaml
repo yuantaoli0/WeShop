@@ -45,6 +45,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   admin: ^0.0.4
+  file_picker: ^5.2.10
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +78,7 @@ flutter:
   assets:
     - assets/images/weshop-logo.jpeg
     - assets/images/user.png
+    - assets/images/useravatar.png
     - assets/icons/home.svg
     - assets/icons/job_management.svg
     - assets/icons/schedule.svg

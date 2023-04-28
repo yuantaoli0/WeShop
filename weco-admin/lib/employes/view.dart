@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:sdk/xView.dart';
 import 'package:weco_admin/home/controller.dart';
 import 'employescontroller.dart';
+import 'dart:io';
+import 'package:file_picker/file_picker.dart';
 
 import '../departments/department/view.dart';
 import '../system_menu/menu_view.dart';
@@ -116,7 +118,39 @@ class EmployeView extends XView<EmployesController> {
           children: [
             Padding(
               padding: const EdgeInsets.only(right: defaultPadding),
-              child: SvgPicture.asset(ep['icon'].toString()),
+              child: InkWell(
+                onTap: () async {
+                  FilePickerResult? result =
+                      await FilePicker.platform.pickFiles(
+                    type: FileType.custom,
+                    allowedExtensions: ['jpg', 'jpeg', 'png'],
+                  );
+                  if (result != null) {
+                    File file = File(result.files.single.path!);
+                    print('Picked image: ${file.path}');
+                    ctl.updateImage(ep['id'].toString(), file);
+                  } else {
+                    print('User canceled the picker');
+                  }
+                },
+                child: ClipOval(
+                  child: Obx(
+                    () {
+                      return Image(
+                        image: ctl.selectedImages[ep['id'].toString()] != null
+                            ? FileImage(
+                                    ctl.selectedImages[ep['id'].toString()]!)
+                                as ImageProvider<Object>
+                            : AssetImage('assets/images/useravatar.png')
+                                as ImageProvider<Object>,
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.cover,
+                      );
+                    },
+                  ),
+                ),
+              ),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,7 +162,7 @@ class EmployeView extends XView<EmployesController> {
                       color: Color(0xFF707276), fontSize: defaultPadding / 1.8),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
@@ -333,9 +367,15 @@ void _showCustomDialog(EmployesController controller) {
                   onPressed: () {
                     Get.back();
                   },
-                  child: Text('取消'),
+                  child: Text(
+                    '取消',
+                    style: TextStyle(color: Colors.black),
+                  ),
                 ),
                 ElevatedButton(
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.green)),
                   onPressed: () {
                     List<String> inputData = controller.textControllers
                         .map((controller) => controller.text)
@@ -344,7 +384,7 @@ void _showCustomDialog(EmployesController controller) {
                     controller.newEmploye(inputData);
                     Get.back();
                   },
-                  child: Text('确认'),
+                  child: Text('确认', style: TextStyle(color: Colors.black)),
                 ),
               ],
             ),
