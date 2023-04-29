@@ -148,6 +148,32 @@ class EmployeView extends XView<EmployesController> {
                       );
                     },
                   ),
+
+                  // child: Obx(
+                  //   () {
+                  //     File? employeeImageFile =
+                  //         ctl.selectedImages[ep['_id'].toString()];
+                  //     String? avatarUrl = ep['avatarUrl'];
+
+                  //     return Image(
+                  //       image: employeeImageFile != null
+                  //           ? FileImage(employeeImageFile)
+                  //               as ImageProvider<Object>
+                  //           : (avatarUrl != null
+                  //               ? NetworkImage(avatarUrl)
+                  //                   as ImageProvider<Object>
+                  //               : AssetImage('assets/images/useravatar.png')
+                  //                   as ImageProvider<Object>),
+                  //       width: 40,
+                  //       height: 40,
+                  //       fit: BoxFit.cover,
+                  //     );
+                  //   },
+                  // ),
+
+
+
+
                 ),
               ),
             ),

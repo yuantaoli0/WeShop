@@ -34,11 +34,37 @@ class ScheduleView extends XView<ScheduleController> {
                     height: defaultPadding,
                   ),
                   _bulidScheduleDrawer(context),
+                  const SizedBox(
+                    height: defaultPadding,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Wrap(
+                        spacing: defaultPadding * 8, // 设置日期部件之间的间隔
+                        children: List.generate(
+                          7,
+                          (index) => Obx(
+                            () => Text(formatDate(ctl.weekDates[index].value)),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 50),
+                      ElevatedButton(
+                        onPressed: ctl.nextPage,
+                        child: Text('Next Week'),
+                      ),
+                    ],
+                  )
                 ],
               )),
         ],
       )),
     );
+  }
+
+  String formatDate(DateTime date) {
+    return '${date.day.toString().padLeft(2, '0')}';
   }
 
   Column _bulidScheduleDrawer(BuildContext context) {
@@ -295,7 +321,6 @@ class ScheduleView extends XView<ScheduleController> {
                   }).toList(),
                 ],
               ),
-
             ],
           ),
         );

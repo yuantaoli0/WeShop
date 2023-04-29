@@ -54,4 +54,15 @@ class ScheduleController extends GetxController {
       print('Selected date: ${day.toString()}');
     }
   }
+
+  List<Rx<DateTime>> weekDates = List.generate(
+    7,
+    (index) => DateTime.now().add(Duration(days: index)).obs,
+  );
+
+  void nextPage() {
+    for (int i = 0; i < 7; i++) {
+      weekDates[i].value = weekDates[i].value.add(Duration(days: 7));
+    }
+  }
 }

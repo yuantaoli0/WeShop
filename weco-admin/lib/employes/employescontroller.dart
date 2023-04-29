@@ -22,12 +22,34 @@ class EmployesController extends XController {
 
   RxMap<String, File?> selectedImages = RxMap<String, File?>();
 
+  // void updateImage(String employeId, File newImage, Employe ep) async {
+  //   selectedImages[employeId] = newImage;
+  //   var res =
+  //       await ep.postFile(newImage, '/shop/avatars/uploadImage', 'avatarImage');
+  //   print(res);
+
+  //   if (res["status"] == 200) {
+  //     String imageUrl = res["data"]["url"];
+  //     // 更新UI以显示图片
+  //     print(imageUrl);
+  //     update();
+  //   }
+  // }
+
   void updateImage(String employeId, File newImage, Employe ep) async {
     selectedImages[employeId] = newImage;
-    var res = await ep.postFile(
-        newImage, '/shop/avatars/uploadImage', 'avatarImage');
+    var res =
+        await ep.postFile(newImage, '/shop/avatars/uploadImage', 'avatarImage');
     print(res);
-    update();
+
+    if (res["status"] == 200) {
+      String imageUrl = res["data"]["url"];
+      ep['avatarUrl'] = imageUrl; // 更新Employe模型的files
+      if (await ep.save() == true) {
+        // loadEmployes();
+      }
+      update();
+    }
   }
 
   @override
