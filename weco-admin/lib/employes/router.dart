@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sdk/router.dart';
-import 'employescontroller.dart';
+import 'controller.dart';
 import 'view.dart';
 
 class EmployesRouter extends XBaseRouter {

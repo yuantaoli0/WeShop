@@ -3,6 +3,7 @@ import 'package:sdk/models/department.dart';
 import 'package:sdk/models/employe.dart';
 import 'package:sdk/models/post.dart';
 import 'base.dart';
+import 'contract.dart';
 import 'terminal.dart';
 import 'terminalType.dart';
 import 'user.dart';
@@ -82,6 +83,19 @@ class Shop extends NetBase {
         employes.add(Employe(ep));
       }
       return employes;
+    } else {
+      return [];
+    }
+  }
+
+    Future<List<Contract>> loadContracts() async {
+    var res = await getHttp('/shop/contracts');
+    if (res['status'] == 200) {
+      List<Contract> contracts = [];
+      for (var cs in res['data']["contracts"]) {
+        contracts.add(Contract(cs));
+      }
+      return contracts;
     } else {
       return [];
     }

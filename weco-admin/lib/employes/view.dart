@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:sdk/xView.dart';
 import 'package:weco_admin/home/controller.dart';
-import 'employescontroller.dart';
+import 'controller.dart';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 
@@ -85,12 +85,12 @@ class EmployeView extends XView<EmployesController> {
                     DataColumn(
                       label: Text("入职时间"),
                     ),
-                    DataColumn(
-                      label: Text("上传合同"),
-                    ),
-                    DataColumn(
-                      label: Text("查看"),
-                    ),
+                    // DataColumn(
+                    //   label: Text("上传合同"),
+                    // ),
+                    // DataColumn(
+                    //   label: Text("查看"),
+                    // ),
                     DataColumn(
                       label: Text(" "),
                     ),
@@ -193,21 +193,21 @@ class EmployeView extends XView<EmployesController> {
       ),
       DataCell(Text(BirthdayBefore)),
       DataCell(Text(dateBeforeT)),
-      DataCell(IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.upload_file,
-            size: defaultPadding * 1.5,
-          ))),
-      DataCell(
-        IconButton(
-          onPressed: () {},
-          icon: Icon(
-            Icons.plagiarism,
-            size: defaultPadding * 1.5,
-          ),
-        ),
-      ),
+      // DataCell(IconButton(
+      //     onPressed: () {},
+      //     icon: Icon(
+      //       Icons.upload_file,
+      //       size: defaultPadding * 1.5,
+      //     ))),
+      // DataCell(
+      //   IconButton(
+      //     onPressed: () {},
+      //     icon: Icon(
+      //       Icons.plagiarism,
+      //       size: defaultPadding * 1.5,
+      //     ),
+      //   ),
+      // ),
       DataCell(
         IconButton(
           onPressed: () {
@@ -324,7 +324,7 @@ class EmployeView extends XView<EmployesController> {
             children: [
               // ignore: prefer_const_constructors
               Text(
-                "公司所有员工合同",
+                "公司所有员工",
                 style: const TextStyle(color: Color(0xFF5F5E61), fontSize: 20),
               ),
               ElevatedButton.icon(

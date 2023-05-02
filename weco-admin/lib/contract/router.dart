@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sdk/router.dart';
 import 'controller.dart';
-import 'contractview.dart';
+import 'view.dart';
 
 class ContractRouter extends XBaseRouter {
   @override
