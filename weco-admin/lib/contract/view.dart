@@ -82,11 +82,11 @@ class ContractView extends XView<ContractController> {
                     DataColumn(
                       label: Text("创建时间"),
                     ),
-                     DataColumn(
-                      label: Text("上传合同"),
+                    DataColumn(
+                      label: Text(" "),
                     ),
                     DataColumn(
-                      label: Text("查看合同"),    
+                      label: Text(""),
                     ),
                   ],
                   rows: List.generate(ctl.rxContract.length,
@@ -195,6 +195,10 @@ class ContractView extends XView<ContractController> {
     List<String> parts = cs['createdAt'].toString().split('T');
     String dateBeforeC = parts[0];
 
+    TextEditingController _nameController = TextEditingController(
+      text: cs['name'].toString(),
+    );
+
     return DataRow(cells: [
       DataCell(
         Row(
@@ -206,30 +210,77 @@ class ContractView extends XView<ContractController> {
             // Column(
             //   crossAxisAlignment: CrossAxisAlignment.start,
             //   children: [
-                Text(cs['name'].toString()),
-                // Text(
-                //   cs['shop'].toString(),
-                //   style: TextStyle(
-                //       color: Color(0xFF707276), fontSize: defaultPadding / 1.8),
-                // ),
-              // ],
-            // )
+            // Text(cs['name'].toString()),
+            IntrinsicWidth(
+              child: TextField(
+                controller: _nameController,
+                onSubmitted: (String value) {
+                  ctl.setContractValue('name', value, cs);
+                },
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                ),
+                style: TextStyle(color: Colors.green), // 设置输入文本的颜色
+              ),
+            ),
           ],
         ),
       ),
       DataCell(Text(dateBeforeC)),
       // DataCell(Text(cs['sa'].toString())),
-      DataCell(IconButton(
-          onPressed: () {},
+      DataCell(
+        PopupMenuButton<String>(
           icon: Icon(
-            Icons.upload_file,
-            size: defaultPadding * 1.5,
-          ))),
+            Icons.drive_file_rename_outline,
+            color: Colors.black,
+          ),
+          color: secondaryColor, // Set the background color of the popup menu
+          elevation: 16,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+                15.0), // Set the corner radius of the popup menu
+          ),
+          itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+            const PopupMenuItem<String>(
+              value: 'CDI',
+              child: Text('CDI'),
+            ),
+            const PopupMenuItem<String>(
+              value: 'CDD',
+              child: Text('CDD'),
+            ),
+            const PopupMenuItem<String>(
+              value: 'stage',
+              child: Text('Contrat de stage'),
+            ),
+            const PopupMenuItem<String>(
+              value: 'apprentissage',
+              child: Text("Contrat d'apprentissage"),
+            ),
+          ],
+          onSelected: (String value) {
+            if (value == 'CDI') {
+              ctl.setContractValue('name', value, cs);
+            }
+            if (value == 'CDD') {
+              ctl.setContractValue('name', value, cs);
+            }
+            if (value == 'stage') {
+              ctl.setContractValue('name', value, cs);
+            }
+            if (value == 'apprentissage') {
+              ctl.setContractValue('name', value, cs);
+            }
+          },
+        ),
+      ),
       DataCell(
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            ctl.delContract(cs);
+          },
           icon: Icon(
-            Icons.plagiarism,
+            Icons.delete_forever,
             size: defaultPadding * 1.5,
           ),
         ),

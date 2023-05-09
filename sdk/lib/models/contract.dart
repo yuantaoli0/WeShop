@@ -55,17 +55,4 @@ class Contract extends NetBase {
       }
     }
   }
-
-  // Future<List<Contract>> loadContracts() async {
-  //   var res = await getHttp('/shop/contracts');
-  //   if (res['status'] == 200) {
-  //     List<Contract> contracts = [];
-  //     for (var cs in res['data']["contracts"]) {
-  //       contracts.add(Contract(cs));
-  //     }
-  //     return contracts;
-  //   } else {
-  //     return [];
-  //   }
-  // }
 }

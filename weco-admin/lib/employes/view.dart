@@ -94,6 +94,12 @@ class EmployeView extends XView<EmployesController> {
                     DataColumn(
                       label: Text(" "),
                     ),
+                    DataColumn(
+                      label: Text(" "),
+                    ),
+                    DataColumn(
+                      label: Text(" "),
+                    ),
                   ],
                   rows: List.generate(ctl.rxEmployes.length,
                       (index) => ContractInfoRow(ctl.rxEmployes[index])),
@@ -133,37 +139,15 @@ class EmployeView extends XView<EmployesController> {
                   }
                 },
                 child: ClipOval(
-                  child: Obx(
-                    () {
-                      return Image(
-                        image: ctl.selectedImages[ep['_id'].toString()] != null
-                            ? FileImage(
-                                    ctl.selectedImages[ep['_id'].toString()]!)
-                                as ImageProvider<Object>
-                            : AssetImage('assets/images/useravatar.png')
-                                as ImageProvider<Object>,
-                        width: 40,
-                        height: 40,
-                        fit: BoxFit.cover,
-                      );
-                    },
-                  ),
-
                   // child: Obx(
                   //   () {
-                  //     File? employeeImageFile =
-                  //         ctl.selectedImages[ep['_id'].toString()];
-                  //     String? avatarUrl = ep['avatarUrl'];
-
                   //     return Image(
-                  //       image: employeeImageFile != null
-                  //           ? FileImage(employeeImageFile)
+                  //       image: ctl.selectedImages[ep['_id'].toString()] != null
+                  //           ? FileImage(
+                  //                   ctl.selectedImages[ep['_id'].toString()]!)
                   //               as ImageProvider<Object>
-                  //           : (avatarUrl != null
-                  //               ? NetworkImage(avatarUrl)
-                  //                   as ImageProvider<Object>
-                  //               : AssetImage('assets/images/useravatar.png')
-                  //                   as ImageProvider<Object>),
+                  //           : AssetImage('assets/images/useravatar.png')
+                  //               as ImageProvider<Object>,
                   //       width: 40,
                   //       height: 40,
                   //       fit: BoxFit.cover,
@@ -171,9 +155,27 @@ class EmployeView extends XView<EmployesController> {
                   //   },
                   // ),
 
+                  child: Obx(
+                    () {
+                      File? employeeImageFile =
+                          ctl.selectedImages[ep['_id'].toString()];
+                      String? avatarUrl = ep['avatarUrl'];
 
-
-
+                      return Image(
+                        image: employeeImageFile != null
+                            ? FileImage(employeeImageFile)
+                                as ImageProvider<Object>
+                            : (avatarUrl != null
+                                ? NetworkImage(avatarUrl)
+                                    as ImageProvider<Object>
+                                : AssetImage('assets/images/useravatar.png')
+                                    as ImageProvider<Object>),
+                        width: 40,
+                        height: 40,
+                        fit: BoxFit.cover,
+                      );
+                    },
+                  ),
                 ),
               ),
             ),
@@ -211,6 +213,29 @@ class EmployeView extends XView<EmployesController> {
       DataCell(
         IconButton(
           onPressed: () {
+            _showMoreInfoEmployeDialog(controller, ep);
+          },
+          icon: Icon(
+            Icons.manage_search,
+            size: defaultPadding * 1.5,
+          ),
+        ),
+      ),
+
+      DataCell(
+        IconButton(
+          onPressed: () {
+            _showEditEmployeDialog(controller, ep);
+          },
+          icon: Icon(
+            Icons.edit_note,
+            size: defaultPadding * 1.5,
+          ),
+        ),
+      ),
+      DataCell(
+        IconButton(
+          onPressed: () {
             ctl.delEmploye(ep);
           },
           icon: Icon(
@@ -220,6 +245,147 @@ class EmployeView extends XView<EmployesController> {
         ),
       ),
     ]);
+  }
+
+  void _showEditEmployeDialog(EmployesController controller, ep) {
+    List<String> birthdayparts = ep['birthday'].toString().split('T');
+    String BirthdayBefore = birthdayparts[0];
+
+    controller.EptextControllers[0].text = ep['name'] ?? '';
+    controller.EptextControllers[1].text = ep['sex'] ?? '';
+    controller.EptextControllers[2].text = BirthdayBefore;
+    controller.EptextControllers[3].text = ep['nationality'] ?? '';
+    controller.EptextControllers[4].text = ep['cardNumber'] ?? '';
+    controller.EptextControllers[5].text = ep['address'] ?? '';
+    controller.EptextControllers[6].text = ep['postCode'] ?? '';
+    controller.EptextControllers[7].text = ep['city'] ?? '';
+    controller.EptextControllers[8].text = ep['telephone'] ?? '';
+    controller.EptextControllers[9].text = ep['socialSecurityNumber'] ?? '';
+    controller.EptextControllers[10].text = ep['salary'].toString() ?? '';
+    controller.EptextControllers[11].text = ep['vacationDays'].toString() ?? '';
+    controller.EptextControllers[12].text = ep['createdAt'] ?? '';
+    controller.EptextControllers[13].text = ep['startAt'] ?? '';
+    controller.EptextControllers[14].text = ep['endedAt'] ?? '';
+    controller.EptextControllers[15].text = ep['comment'] ?? '';
+    controller.textControllers.forEach((controller) => controller.clear());
+    Get.dialog(
+      Dialog(
+        child: Container(
+          width: 400,
+          height: 600,
+          padding: EdgeInsets.all(16),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ...List.generate(
+                  16,
+                  (index) => Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: TextFormField(
+                      controller: controller.EptextControllers[index],
+                      decoration: InputDecoration(
+                        labelText: controller.labelText[index],
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      child: Text(
+                        '取消',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.green)),
+                      onPressed: () {
+                        List<String> inputData = controller.EptextControllers
+                            .map((controller) => controller.text)
+                            .toList();
+
+                        controller.newEmploye(inputData);
+                        Get.back();
+                      },
+                      child: Text('确认', style: TextStyle(color: Colors.black)),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  void _showCustomDialog(EmployesController controller) {
+    controller.textControllers.forEach((controller) => controller.clear());
+    Get.dialog(
+      Dialog(
+        child: Container(
+          width: 400,
+          height: 600,
+          padding: EdgeInsets.all(16),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ...List.generate(
+                  16,
+                  (index) => Padding(
+                    padding: const EdgeInsets.only(bottom: 8),
+                    child: TextFormField(
+                      controller: controller.textControllers[index],
+                      decoration: InputDecoration(
+                        labelText: controller.labelText[index],
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      child: Text(
+                        '取消',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                    ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.green)),
+                      onPressed: () {
+                        List<String> inputData = controller.textControllers
+                            .map((controller) => controller.text)
+                            .toList();
+
+                        controller.newEmploye(inputData);
+                        Get.back();
+                      },
+                      child: Text('确认', style: TextStyle(color: Colors.black)),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   Container _buildSearchFile(BuildContext context) {
@@ -367,55 +533,278 @@ void _showCustomDialog(EmployesController controller) {
   Get.dialog(
     Dialog(
       child: Container(
-        width: 300,
+        width: 400,
+        height: 600,
         padding: EdgeInsets.all(16),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ...List.generate(
-              4,
-              (index) => Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: TextFormField(
-                  controller: controller.textControllers[index],
-                  decoration: InputDecoration(
-                    labelText: controller.labelText[index],
-                    border: OutlineInputBorder(),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ...List.generate(
+                16,
+                (index) => Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: TextFormField(
+                    controller: controller.textControllers[index],
+                    decoration: InputDecoration(
+                      labelText: controller.labelText[index],
+                      border: OutlineInputBorder(),
+                    ),
                   ),
                 ),
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  child: Text(
-                    '取消',
-                    style: TextStyle(color: Colors.black),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Get.back();
+                    },
+                    child: Text(
+                      '取消',
+                      style: TextStyle(color: Colors.black),
+                    ),
                   ),
-                ),
-                ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(Colors.green)),
-                  onPressed: () {
-                    List<String> inputData = controller.textControllers
-                        .map((controller) => controller.text)
-                        .toList();
+                  ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.green)),
+                    onPressed: () {
+                      List<String> inputData = controller.textControllers
+                          .map((controller) => controller.text)
+                          .toList();
 
-                    controller.newEmploye(inputData);
-                    Get.back();
-                  },
-                  child: Text('确认', style: TextStyle(color: Colors.black)),
-                ),
-              ],
-            ),
-          ],
+                      controller.newEmploye(inputData);
+                      Get.back();
+                    },
+                    child: Text('确认', style: TextStyle(color: Colors.black)),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     ),
   );
 }
+
+// void _showMoreInfoEmployeDialog(EmployesController controller) {
+//   controller.textControllers.forEach((controller) => controller.clear());
+//   Get.dialog(
+//     Dialog(
+//       child: Container(
+//         width: 300,
+//         padding: EdgeInsets.all(16),
+//         child: Column(
+//           mainAxisSize: MainAxisSize.min,
+//           children: [
+//             ...List.generate(
+//               4,
+//               (index) => Padding(
+//                 padding: const EdgeInsets.only(bottom: 8),
+//                 child: TextFormField(
+//                   controller: controller.textControllers[index],
+//                   decoration: InputDecoration(
+//                     labelText: controller.labelText[index],
+//                     border: OutlineInputBorder(),
+//                   ),
+//                 ),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     ),
+//   );
+// }
+
+void _showMoreInfoEmployeDialog(EmployesController controller, ep) {
+  controller.EptextControllers.forEach((controller) => controller.clear());
+
+  // 将Employe对象的属性设置为TextEditingController的初始值
+  List<String> birthdayparts = ep['birthday'].toString().split('T');
+  String BirthdayBefore = birthdayparts[0];
+
+  // controller.EptextControllers[0].text = ep['name'] ?? '';
+  // controller.EptextControllers[1].text = ep['sex'] ?? '';
+  // controller.EptextControllers[2].text = BirthdayBefore;
+  // controller.EptextControllers[3].text = ep['nationality'] ?? '';
+  // controller.EptextControllers[4].text = ep['cardNumber'] ?? '';
+  // controller.EptextControllers[5].text = ep['address'] ?? '';
+  // controller.EptextControllers[6].text = ep['postCode'] ?? '';
+  // controller.EptextControllers[7].text = ep['city'] ?? '';
+  // controller.EptextControllers[8].text = ep['telephone'] ?? '';
+  // controller.EptextControllers[9].text = ep['socialSecurityNumber'] ?? '';
+  // controller.EptextControllers[10].text = ep['salary'].toString() ?? '';
+  // controller.EptextControllers[11].text = ep['vacationDays'].toString() ?? '';
+  // controller.EptextControllers[12].text = ep['createdAt'] ?? '';
+  // controller.EptextControllers[13].text = ep['startAt'] ?? '';
+  // controller.EptextControllers[14].text = ep['endedAt'] ?? '';
+  // controller.EptextControllers[15].text = ep['comment'] ?? '';
+
+  Get.dialog(
+    Dialog(
+      child: Container(
+        width: 1000,
+        height: 1000,
+        padding: EdgeInsets.all(16),
+        child: GridView.builder(
+          itemCount: 4,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 4, // 竖向间距
+            crossAxisSpacing: 4, // 横向间距
+          ),
+          itemBuilder: (BuildContext context, int index) {
+            Color containerColor = Colors.white;
+
+            Widget? content;
+            if (index == 0) {
+              content = Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("基本信息"),
+                  Text(
+                    "Name: " + (ep['name'] ?? ''),
+                  ),
+                  Text(
+                    "Sex: " + (ep['sex'] ?? ''),
+                  ),
+                  Text(
+                    "nationality: " + (ep['nationality'] ?? ''),
+                  ),
+                  Text(
+                    "cardNumber: " + (ep['cardNumber'] ?? ''),
+                  ),
+                  Text(
+                    "address: " + (ep['address'] ?? ''),
+                  ),
+                  Text(
+                    "postCode: " + (ep['postCode'] ?? ''),
+                  ),
+                  Text(
+                    "city: " + (ep['city'] ?? ''),
+                  ),
+                  Text(
+                    "telephone: " + (ep['telephone'] ?? ''),
+                  ),
+                ],
+              );
+            } else if (index == 1) {
+              content = Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("时间信息"),
+                  Text(
+                    "vacationDays: " + (ep['vacationDays'].toString() ?? ''),
+                  ),
+                  Text(
+                    "Birthday: " + (BirthdayBefore ?? ''),
+                  ),
+                  Text(
+                    "createdAt: " + (ep['createdAt'] ?? ''),
+                  ),
+                  Text(
+                    "startAt: " + (ep['startAt'] ?? ''),
+                  ),
+                  Text(
+                    "endedAt: " + (ep['endedAt'] ?? ''),
+                  ),
+                ],
+              );
+            } else if (index == 2) {
+              content = Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("工资信息和保险号码"),
+                  Text(
+                    "socialSecurityNumber: " +
+                        (ep['socialSecurityNumber'] ?? ''),
+                  ),
+                  Text(
+                    "salary: " + (ep['salary'].toString() ?? ''),
+                  ),
+                ],
+              );
+            } else if (index == 3) {
+              content = Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "评价",
+                  ),
+                  Text(
+                    ep['comment'] ?? '',
+                  ),
+                ],
+              );
+            } else {
+              content = null;
+            }
+
+            return Container(
+              decoration: BoxDecoration(
+                color: containerColor,
+                border: Border.all(
+                  color: Colors.black,
+                  width: 2,
+                ), // 设置容器边框为黑色线
+              ),
+              child: content,
+            );
+          },
+        ),
+      ),
+    ),
+  );
+}
+
+
+     // child: Column(
+        //   mainAxisSize: MainAxisSize.min,
+        //   children: [
+        //     ...List.generate(
+        //       8,
+        //       (index) => Padding(
+        //         padding: const EdgeInsets.only(bottom: 8),
+                // child: TextFormField(
+                //   controller: controller.EptextControllers[index],
+                //   decoration: InputDecoration(
+                //     labelText: controller.EplabelText[index],
+                //     border: OutlineInputBorder(),
+                //   ),
+                // ),
+        //       ),
+        //     ),
+        //   ],
+        // ),
+
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //   children: [
+            //     ElevatedButton(
+            //       onPressed: () {
+            //         Get.back();
+            //       },
+            //       child: Text(
+            //         '取消',
+            //         style: TextStyle(color: Colors.black),
+            //       ),
+            //     ),
+            //     ElevatedButton(
+            //       style: ButtonStyle(
+            //           backgroundColor:
+            //               MaterialStateProperty.all<Color>(Colors.green)),
+            //       onPressed: () {
+            //         List<String> inputData = controller.textControllers
+            //             .map((controller) => controller.text)
+            //             .toList();
+
+            //         controller.newEmploye(inputData);
+            //         Get.back();
+            //       },
+            //       child: Text('确认', style: TextStyle(color: Colors.black)),
+            //     ),
+            //   ],
+            // ),

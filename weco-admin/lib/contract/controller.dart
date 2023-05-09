@@ -8,6 +8,9 @@ class ContractController extends XController {
   RxList<Contract> rxContract = RxList([]);
   RxBool rxIsloading = false.obs;
 
+  //  final modifContractName = ''.obs;
+  final text = 'Editable Text'.obs;
+
   List<String> labelText = [
     '合同类型',
     '创建时间',
@@ -58,6 +61,13 @@ class ContractController extends XController {
       close(false);
     }
   }
+
+    setContractValue(String key, dynamic value, Contract cs) {
+    cs[key] = value;
+    cs.save();
+    rxContract.refresh();
+  }
+  
 
   // RxMap<String, File?> selectedImages = RxMap<String, File?>();
 }
