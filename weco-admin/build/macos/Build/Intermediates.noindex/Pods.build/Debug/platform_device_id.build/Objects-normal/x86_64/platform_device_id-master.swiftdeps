@@ -1,0 +1,6 @@
+version: "Apple Swift version 5.8.1 (swiftlang-5.8.0.124.5 clang-1403.0.22.11.100)"
+options: "f523a59098e9eb0b87541b2f9e9b1e1d975c14f0ae8b990146d89303e18840e1"
+build_start_time: [1686740488, 327654000]
+build_end_time: [1686740500, 199739000]
+inputs:
+  "/Users/tao/.pub-cache/hosted/pub.dev/platform_device_id-1.0.1/macos/Classes/PlatformDeviceIdPlugin.swift": [1679494156, 644412669]

@@ -1,0 +1,8 @@
+version: "Apple Swift version 5.8.1 (swiftlang-5.8.0.124.5 clang-1403.0.22.11.100)"
+options: "694d01ff974dc61adcd1c1dd6154b0e76935cb6c7160a74ff5cd001b83b414f1"
+build_start_time: [1686740527, 327084000]
+build_end_time: [1686740539, 480236000]
+inputs:
+  "/Users/tao/Epitech_masterII/Flutter_master/work_at/weco-admin/macos/Flutter/GeneratedPluginRegistrant.swift": [1686740458, 669415213]
+  "/Users/tao/Epitech_masterII/Flutter_master/work_at/weco-admin/macos/Runner/AppDelegate.swift": [1677673024, 0]
+  "/Users/tao/Epitech_masterII/Flutter_master/work_at/weco-admin/macos/Runner/MainFlutterWindow.swift": [1677673024, 0]

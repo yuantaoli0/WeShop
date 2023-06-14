@@ -1,15 +1,9 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:sdk/models/user.dart';
 import 'package:sdk/sdkController.dart';
 import 'package:sdk/xView.dart';
-import 'package:weco_admin/system_menu/menu_view.dart';
-import 'package:weco_admin/system_menu/view.dart';
-import 'package:weco_admin/theme.dart';
-//import 'package:fullscreen/fullscreen.dart';
+import 'package:weco_admin/tool/theme.dart';
 
 class AppController extends SDKController {
   @override
@@ -67,7 +61,7 @@ class AppView extends XView<AppController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: secondaryColor,
+      backgroundColor: backgroudColor,
       body: Center(
         child: SizedBox(
           width: Get.context!.width / 2,

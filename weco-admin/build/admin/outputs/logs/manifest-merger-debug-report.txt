@@ -1,0 +1,101 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:1:1-43:12
+INJECTED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:1:1-43:12
+INJECTED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:1:1-43:12
+	package
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:3:3-35
+		INJECTED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml
+		INJECTED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:2:2-48
+	xmlns:android
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:1:11-69
+uses-permission#android.permission.WRITE_SYNC_SETTINGS
+ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:4:3-75
+	android:name
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:4:20-73
+uses-permission#com.google.android.providers.gsf.permission.READ_GSERVICES
+ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:5:3-95
+	android:name
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:5:20-93
+uses-permission#android.permission.DELETE_PACKAGES
+ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:6:4-7:59
+	tools:ignore
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:7:22-57
+	android:name
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:6:21-70
+uses-permission#android.permission.REQUEST_DELETE_PACKAGES
+ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:8:3-79
+	android:name
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:8:20-77
+uses-permission#android.permission.DOWNLOAD_WITHOUT_NOTIFICATION
+ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:9:3-10:59
+	android:name
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:9:20-90
+uses-permission#android.permission.GET_ACCOUNTS
+ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:12:5-71
+	android:name
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:12:22-68
+uses-permission#android.permission.MANAGE_ACCOUNTS
+ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:13:5-74
+	android:name
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:13:22-71
+uses-permission#android.permission.PACKAGE_USAGE_STATS
+ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:14:5-78
+	android:name
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:14:22-75
+uses-permission#android.permission.ACCESS_WIFI_STATE
+ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:15:5-76
+	android:name
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:15:22-73
+uses-permission#android.permission.CHANGE_WIFI_STATE
+ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:16:5-76
+	android:name
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:16:22-73
+uses-permission#android.permission.INTERNET
+ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:17:5-67
+	android:name
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:17:22-64
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:18:5-81
+	android:name
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:18:22-78
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:19:5-78
+	android:name
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:19:22-76
+application
+ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:30:1-40:15
+receiver#com.DevAsh.Admin.admin.MyDeviceAdminReceiver
+ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:31:3-39:12
+	android:permission
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:33:10-67
+	android:name
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:32:10-47
+meta-data#android.app.device_admin
+ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:34:5-35:66
+	android:resource
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:35:13-63
+	android:name
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:34:16-55
+intent-filter#action:name:android.app.action.DEVICE_ADMIN_ENABLED
+ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:36:5-38:21
+action#android.app.action.DEVICE_ADMIN_ENABLED
+ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:37:9-74
+	android:name
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:37:17-71
+uses-sdk
+INJECTED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml
+INJECTED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml
+INJECTED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml
+INJECTED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml
+		INJECTED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml
+		ADDED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml
+		INJECTED from /Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml

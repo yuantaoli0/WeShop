@@ -1,0 +1,94 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    xmlns:tools="http://schemas.android.com/tools"
+4    package="com.DevAsh.Admin.admin" >
+5
+6    <uses-sdk
+7        android:minSdkVersion="16"
+7-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml
+8        android:targetSdkVersion="16" />
+8-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml
+9
+10    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+10-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:4:3-75
+10-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:4:20-73
+11    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+11-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:5:3-95
+11-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:5:20-93
+12    <uses-permission
+12-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:6:4-7:59
+13        android:name="android.permission.DELETE_PACKAGES"
+13-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:6:21-70
+14        tools:ignore="ProtectedPermissions" />
+14-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:7:22-57
+15    <uses-permission android:name="android.permission.REQUEST_DELETE_PACKAGES" />
+15-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:8:3-79
+15-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:8:20-77
+16    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+16-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:9:3-10:59
+16-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:9:20-90
+17    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+17-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:12:5-71
+17-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:12:22-68
+18    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+18-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:13:5-74
+18-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:13:22-71
+19    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
+19-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:14:5-78
+19-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:14:22-75
+20    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+20-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:15:5-76
+20-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:15:22-73
+21    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+21-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:16:5-76
+21-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:16:22-73
+22    <uses-permission android:name="android.permission.INTERNET" />
+22-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:17:5-67
+22-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:17:22-64
+23    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+23-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:18:5-81
+23-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:18:22-78
+24    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+24-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:19:5-78
+24-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:19:22-76
+25    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+25-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:9:3-10:59
+25-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:9:20-90
+26    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+26-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:12:5-71
+26-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:12:22-68
+27    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+27-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:13:5-74
+27-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:13:22-71
+28    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+28-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:4:3-75
+28-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:4:20-73
+29    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+29-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:5:3-95
+29-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:5:20-93
+30
+31    <application>
+31-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:30:1-40:15
+32        <receiver
+32-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:31:3-39:12
+33            android:name="com.DevAsh.Admin.admin.MyDeviceAdminReceiver"
+33-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:32:10-47
+34            android:permission="android.permission.BIND_DEVICE_ADMIN" >
+34-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:33:10-67
+35            <meta-data
+35-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:34:5-35:66
+36                android:name="android.app.device_admin"
+36-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:34:16-55
+37                android:resource="@xml/device_admin_uses_policies" />
+37-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:35:13-63
+38
+39            <intent-filter>
+39-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:36:5-38:21
+40                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+40-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:37:9-74
+40-->/Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/android/src/main/AndroidManifest.xml:37:17-71
+41            </intent-filter>
+42        </receiver>
+43    </application>
+44
+45</manifest>

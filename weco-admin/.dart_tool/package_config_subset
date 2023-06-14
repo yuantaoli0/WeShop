@@ -1,7 +1,3 @@
-admin
-2.1
-file:///Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/
-file:///Users/tao/.pub-cache/hosted/pub.dev/admin-0.0.4/lib/
 args
 2.18
 file:///Users/tao/.pub-cache/hosted/pub.dev/args-2.4.0/
@@ -42,6 +38,10 @@ boolean_selector
 2.17
 file:///Users/tao/.pub-cache/hosted/pub.dev/boolean_selector-2.1.1/
 file:///Users/tao/.pub-cache/hosted/pub.dev/boolean_selector-2.1.1/lib/
+carousel_slider
+2.12
+file:///Users/tao/.pub-cache/hosted/pub.dev/carousel_slider-4.2.1/
+file:///Users/tao/.pub-cache/hosted/pub.dev/carousel_slider-4.2.1/lib/
 characters
 2.12
 file:///Users/tao/.pub-cache/hosted/pub.dev/characters-1.2.1/
@@ -54,6 +54,10 @@ collection
 2.12
 file:///Users/tao/.pub-cache/hosted/pub.dev/collection-1.17.0/
 file:///Users/tao/.pub-cache/hosted/pub.dev/collection-1.17.0/lib/
+convert
+2.18
+file:///Users/tao/.pub-cache/hosted/pub.dev/convert-3.1.1/
+file:///Users/tao/.pub-cache/hosted/pub.dev/convert-3.1.1/lib/
 crypto
 2.14
 file:///Users/tao/.pub-cache/hosted/pub.dev/crypto-3.0.2/
@@ -78,6 +82,10 @@ dio
 2.12
 file:///Users/tao/.pub-cache/hosted/pub.dev/dio-4.0.6/
 file:///Users/tao/.pub-cache/hosted/pub.dev/dio-4.0.6/lib/
+dots_indicator
+2.12
+file:///Users/tao/.pub-cache/hosted/pub.dev/dots_indicator-2.1.2/
+file:///Users/tao/.pub-cache/hosted/pub.dev/dots_indicator-2.1.2/lib/
 fake_async
 2.12
 file:///Users/tao/.pub-cache/hosted/pub.dev/fake_async-1.3.1/
@@ -170,6 +178,10 @@ logger
 2.12
 file:///Users/tao/.pub-cache/hosted/pub.dev/logger-1.1.0/
 file:///Users/tao/.pub-cache/hosted/pub.dev/logger-1.1.0/lib/
+mask_text_input_formatter
+2.12
+file:///Users/tao/.pub-cache/hosted/pub.dev/mask_text_input_formatter-2.4.0/
+file:///Users/tao/.pub-cache/hosted/pub.dev/mask_text_input_formatter-2.4.0/lib/
 matcher
 2.18
 file:///Users/tao/.pub-cache/hosted/pub.dev/matcher-0.12.13/
@@ -384,10 +396,10 @@ file:///Users/tao/Epitech_masterII/Flutter_master/flutter/packages/flutter_web_p
 file:///Users/tao/Epitech_masterII/Flutter_master/flutter/packages/flutter_web_plugins/lib/
 sdk
 2.17
-file:///Users/tao/Epitech_masterII/Flutter_master/weshop/sdk/
-file:///Users/tao/Epitech_masterII/Flutter_master/weshop/sdk/lib/
+file:///Users/tao/Epitech_masterII/Flutter_master/work_at/sdk/
+file:///Users/tao/Epitech_masterII/Flutter_master/work_at/sdk/lib/
 weco_admin
 2.18
-file:///Users/tao/Epitech_masterII/Flutter_master/weshop/weco-admin/
-file:///Users/tao/Epitech_masterII/Flutter_master/weshop/weco-admin/lib/
+file:///Users/tao/Epitech_masterII/Flutter_master/work_at/weco-admin/
+file:///Users/tao/Epitech_masterII/Flutter_master/work_at/weco-admin/lib/
 2

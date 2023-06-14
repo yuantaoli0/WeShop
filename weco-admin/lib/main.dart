@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'dart:math' as math;
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,12 +10,10 @@ import 'package:sdk/language.dart';
 import 'package:sdk/util/xlogger.dart';
 import 'package:sdk/xcontroller.dart';
 
-import 'dart:ui' as ui;
 import 'package:get/get.dart';
-import 'package:weco_admin/theme.dart';
-
+import 'package:weco_admin/tool/theme.dart';
 import 'router.dart';
-import 'system_menu/menu_view.dart';
+
 
 Future<void> main() async {
   ErrorWidget.builder = (FlutterErrorDetails details) {
@@ -52,7 +49,6 @@ Future<void> main() async {
       //Utilities.log("Will log here ${errorDetails.exception.toString()}");
     };
     //WidgetsFlutterBinding.ensureInitialized();
-
     runApp(MyHomePage());
   }, (error, stackTrace) {
     XLogger().e(error.toString());
@@ -99,7 +95,7 @@ class MyHomePage extends StatelessWidget {
                   ? (isPhone ? 672 : 2160)
                   : physicalHeight)), // MediaQueryData.fromWindow(WidgetsBinding.instance!.window),
       child: ScreenUtilInit(
-        designSize: isPhone ? const Size(360, 672) : const Size(3840, 2160),
+        designSize: isPhone ? const Size(360, 672) : const Size(966.04, 603.77),
         //splitScreenMode: true,
         //minTextAdapt: true,
         builder: (ctx, widget) => GetMaterialApp(

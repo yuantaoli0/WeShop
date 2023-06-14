@@ -22,7 +22,8 @@ class TabletView extends XView<LoginController> {
     // ignore: unused_local_variable
     final double pixelRatio = MediaQuery.of(context).devicePixelRatio; // 获取像素比例
     // ignore: unused_local_variable
-    final Orientation orientation = MediaQuery.of(context).orientation; // 获取屏幕方向
+    final Orientation orientation =
+        MediaQuery.of(context).orientation; // 获取屏幕方向
 
     return Scaffold(
       // ignore: prefer_const_constructors
@@ -108,7 +109,7 @@ class TabletView extends XView<LoginController> {
                                   textAlign: TextAlign.end,
                                   // ignore: prefer_const_constructors
                                   style: TextStyle(
-                                    fontSize: 200.0,
+                                    fontSize: 10.0,
                                   ),
                                   // style: Theme.of(context).textTheme.headline6,
                                 ),

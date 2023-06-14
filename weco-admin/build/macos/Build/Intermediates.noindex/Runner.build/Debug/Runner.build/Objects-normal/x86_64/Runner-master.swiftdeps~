@@ -1,0 +1,8 @@
+version: "Apple Swift version 5.8.1 (swiftlang-5.8.0.124.5 clang-1403.0.22.11.100)"
+options: "16b1121d7cac78562431ebea607821273466b133385440049b69597bd0e34cdf"
+build_start_time: [1686065144, 985582000]
+build_end_time: [1686065145, 47079000]
+inputs:
+  "/Users/tao/Epitech_masterII/Flutter_master/weshop_nfc_s/weco-admin/macos/Flutter/GeneratedPluginRegistrant.swift": !private [1686065099, 234857800]
+  "/Users/tao/Epitech_masterII/Flutter_master/weshop_nfc_s/weco-admin/macos/Runner/AppDelegate.swift": !private [1677673024, 0]
+  "/Users/tao/Epitech_masterII/Flutter_master/weshop_nfc_s/weco-admin/macos/Runner/MainFlutterWindow.swift": !private [1677673024, 0]
